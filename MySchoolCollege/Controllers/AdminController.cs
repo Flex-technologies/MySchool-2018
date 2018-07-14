@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using MySchoolCollege.Models;
+//using MySchoolCollege.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +9,11 @@ using System.Web.Mvc;
 //using System.Web.WebPages.Html;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using MySchoolCollege.Models.ModelViews;
+//using MySchoolCollege.Models.ModelViews;
 using System.Data.Entity;
-using MySchoolCollege.Models.Utilitys;
+//using MySchoolCollege.Models.Utilitys;
+using MySchoolLibrary2018.Models;
+using MySchoolLibrary2018.Models.ModelViews;
 
 namespace MySchoolCollege.Controllers
 {
