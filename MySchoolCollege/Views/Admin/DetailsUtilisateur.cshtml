@@ -1,0 +1,91 @@
+﻿@model MySchoolCollege.Models.ModelViews.UtilisateurViewModel
+@{
+    ViewBag.Title = "Details Utilisateur ";
+}
+
+
+<div id="content">
+    <h2>Details Utilisateur Matricule: @Model.Matricule</h2>
+<div class="jarviswidget jarviswidget-sortable" id="wid-id-11" role="widget" data-widget-custombutton="false" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-togglebutton="false">
+    <!-- widget options:
+        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+
+    -->
+    <header class="ui-sortable-handle" role="heading">
+        <h2><strong>Détails utilisateur Matricule:</strong> <i>@Model.Matricule</i></h2>
+
+        <ul class="nav nav-tabs pull-right" id="widget-tab-1">
+            <li class="active">
+                <a href="#hr1" data-toggle="tab"> <i class="fa fa-lg fa-arrow-circle-o-down"></i> <span class="hidden-mobile hidden-tablet"> Informations </span> </a>
+            </li>
+            <li>
+                <a href="#hr2" data-toggle="tab"> <i class="fa fa-lg fa-arrow-circle-o-up"></i> <span class="hidden-mobile hidden-tablet"> Groupes </span></a>
+            </li>
+        </ul>
+
+        <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+    </header>
+    <!-- widget div-->
+    <div role="content">
+
+        <!-- widget edit box -->
+        <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+        </div>
+        <!-- end widget edit box -->
+        <!-- widget content -->
+        <div class="widget-body no-padding">
+            <!-- widget body text-->
+
+            <div class="tab-content padding-10">
+                <div class="tab-pane fade in active" id="hr1">
+
+                    <h4 class="alert"> @Model.Prenom @Model.Nom</h4>
+                    Tel: @Model.Telephone
+                     <address>@Model.Adresse</address>
+
+                </div>
+                <div class="tab-pane fade" id="hr2">
+
+                    <h4 class="alert alert-warning"> Checkout the <a href="general-elements.html">General Elements</a> page for more tab options </h4>
+                    
+
+                </div>
+            </div>
+
+            <!-- end widget body text-->
+            <!-- widget footer -->
+            <div class="widget-footer text-right">
+
+                <span class="onoffswitch-title">
+                    <i class="fa fa-check"></i> Afficher les onglets
+                </span>
+                <span class="onoffswitch">
+                    <input name="onoffswitch" class="onoffswitch-checkbox" id="show-tabs" type="checkbox" checked="checked">
+                    <label class="onoffswitch-label" for="show-tabs">
+                        <span class="onoffswitch-inner" data-swchoff-text="NO" data-swchon-text="True"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </span>
+
+            </div>
+            <!-- end widget footer -->
+
+        </div>
+        <!-- end widget content -->
+
+    </div>
+    <!-- end widget div -->
+
+</div>
+</div>

@@ -1,0 +1,128 @@
+﻿@model MySchoolCollege.Models.RoleViewModel
+
+@{
+    ViewBag.Title = "Details Role";
+}
+
+<h2>Details du groupe: @Model.Id</h2>
+
+<div>
+    <h4>Role</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModification)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "ModifierRole", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Roles")
+</p>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4>Ajouter un utilisateur au groupe</h4>
+            <div class="form-group">
+                @Html.HiddenFor(model => model.Id)
+                <label asp-for="UtilisateurId" class="control-label col-md-2">Utilisateurs</label>
+                <div class="col-md-10">
+                    
+                    @Html.DropDownListFor(m => m.UtilisateurId, Model.Utilisateurs, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Ajouter" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@{ if (ViewBag.MessageSucces != null)
+    {
+      <div class="alert-@ViewBag.MessageClass">
+    @ViewBag.MessageSucces
+        </div>
+    }
+ }
+
+<row>
+
+    <div><h4>Liste des utilisateurs du groupe</h4></div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.First().Prenom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.First().Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.First().DateNaissance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.First().Email)
+
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prenom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateNaissance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+
+                </td>
+
+                <td>@Html.ActionLink("Enlever","DetailsRole",new { id = Model.Id, utilisateurId = item.Id, sup = true})
+                
+                </td>
+            </tr>
+        }
+
+    </table>
+</row>
