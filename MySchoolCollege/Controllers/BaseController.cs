@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using MySchoolCollege.Models.ModelViews;
+using MySchoolLibrary2018.Models.ModelViews;
 using System.Data.Entity;
-using MySchoolCollege.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MySchoolLibrary2018.Models;
 
 /// <summary>
 /// Ceci est le controle de base l'application 
