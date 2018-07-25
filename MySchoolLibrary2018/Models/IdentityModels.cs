@@ -100,6 +100,20 @@ namespace MySchoolLibrary2018.Models
         public DbSet<ClasseDeBase> ClasseDeBases { get; set; }
         public DbSet<ServiceMatiere> ServiceMatieres { get; set; }
         public DbSet<Fonction> Fonctions { get; set; }
+        public DbSet<Semestre> Semestres { get; set; }
+        public DbSet<Notation> Notations { get; set; }
+        public DbSet<AvisOrientation> AvisOrientations { get; set; }
+        public DbSet<DemandeOrientation> DemandeOrientations { get; set; }
+        public DbSet<UniteEnseignement> UniteEnseignements { get; set; }
+        public DbSet<DossierEtudiant> DossierEtudiants { get; set; }
+        public DbSet<DossierPunition> DossierPunitions { get; set; }
+        public DbSet<DossierSanction> DossierSanctions { get; set; }
+        public DbSet<Inscription> Inscriptions { get; set; }
+        public DbSet<Batiment> Batiments { get; set; }
+        public DbSet<Salle> Salles { get; set; }
+        public DbSet<Carnet> Carnets { get; set; }
+        public DbSet<Cours> Cours { get; set; }
+        public DbSet<PointageEtudiant> PointageEtudiants { get; set; }
         
     }
 }

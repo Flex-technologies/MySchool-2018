@@ -159,3 +159,11 @@ C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolC
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\bin\MySchoolLibrary2018.dll.config
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb19.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb20.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb21.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb22.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb23.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb24.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb25.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb26.resources

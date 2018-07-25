@@ -304,6 +304,38 @@
     <Compile Include="Migrations\201804241455126_MiseAjourDb18.Designer.cs">
       <DependentUpon>201804241455126_MiseAjourDb18.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807152023590_MiseAjourDb19.cs" />
+    <Compile Include="Migrations\201807152023590_MiseAjourDb19.Designer.cs">
+      <DependentUpon>201807152023590_MiseAjourDb19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807162247392_MiseAjourDb20.cs" />
+    <Compile Include="Migrations\201807162247392_MiseAjourDb20.Designer.cs">
+      <DependentUpon>201807162247392_MiseAjourDb20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807171600134_MiseAjourDb21.cs" />
+    <Compile Include="Migrations\201807171600134_MiseAjourDb21.Designer.cs">
+      <DependentUpon>201807171600134_MiseAjourDb21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807172006000_MiseAjourDb22.cs" />
+    <Compile Include="Migrations\201807172006000_MiseAjourDb22.Designer.cs">
+      <DependentUpon>201807172006000_MiseAjourDb22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807200923043_MiseAjourDb23.cs" />
+    <Compile Include="Migrations\201807200923043_MiseAjourDb23.Designer.cs">
+      <DependentUpon>201807200923043_MiseAjourDb23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201246449_MiseAjourDb24.cs" />
+    <Compile Include="Migrations\201807201246449_MiseAjourDb24.Designer.cs">
+      <DependentUpon>201807201246449_MiseAjourDb24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201250473_MiseAjourDb25.cs" />
+    <Compile Include="Migrations\201807201250473_MiseAjourDb25.Designer.cs">
+      <DependentUpon>201807201250473_MiseAjourDb25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201253269_MiseAjourDb26.cs" />
+    <Compile Include="Migrations\201807201253269_MiseAjourDb26.Designer.cs">
+      <DependentUpon>201807201253269_MiseAjourDb26.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1220,6 +1252,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804241455126_MiseAjourDb18.resx">
       <DependentUpon>201804241455126_MiseAjourDb18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807152023590_MiseAjourDb19.resx">
+      <DependentUpon>201807152023590_MiseAjourDb19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807162247392_MiseAjourDb20.resx">
+      <DependentUpon>201807162247392_MiseAjourDb20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807171600134_MiseAjourDb21.resx">
+      <DependentUpon>201807171600134_MiseAjourDb21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807172006000_MiseAjourDb22.resx">
+      <DependentUpon>201807172006000_MiseAjourDb22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807200923043_MiseAjourDb23.resx">
+      <DependentUpon>201807200923043_MiseAjourDb23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201246449_MiseAjourDb24.resx">
+      <DependentUpon>201807201246449_MiseAjourDb24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201250473_MiseAjourDb25.resx">
+      <DependentUpon>201807201250473_MiseAjourDb25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201253269_MiseAjourDb26.resx">
+      <DependentUpon>201807201253269_MiseAjourDb26.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
