@@ -167,3 +167,8 @@ C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolC
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb24.resources
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb25.resources
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb26.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\bin\PagedList.dll
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\bin\PagedList.Mvc.dll
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\bin\PagedList.xml
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\bin\PagedList.Mvc.xml
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Properties.Resources.resources

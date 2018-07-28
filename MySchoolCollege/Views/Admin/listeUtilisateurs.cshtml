@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MySchoolLibrary2018.Models.ModelViews.UtilisateurListViewModel>
+﻿@model PagedList<MySchoolLibrary2018.Models.ModelViews.UtilisateurListViewModel>
+@using PagedList.Mvc;
+@using PagedList;
 
 @{
     ViewBag.Title = "Liste des utilisateurs";
@@ -19,18 +21,18 @@
                 <!-- Widget ID (each widget will need unique ID)-->
                 <div class="jarviswidget" id="wid-id-0">
                     <!-- widget options:
-                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
-                        data-widget-colorbutton="false"
-                        data-widget-editbutton="false"
-                        data-widget-togglebutton="false"
-                        data-widget-deletebutton="false"
-                        data-widget-fullscreenbutton="false"
-                        data-widget-custombutton="false"
-                        data-widget-collapsed="true"
-                        data-widget-sortable="false"
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
 
-                    -->
+    -->
                     <header>
                         <h2><strong>Liste des</strong> <i>utilisateurs</i></h2>
 
@@ -49,20 +51,22 @@
                         <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body">
-
+                            <div class="widget-body-toolbar">
+                                <a href="@Url.Action("AjouterUtilisateur", "Admin")" class="btn btn-default b"> <i>Ajouter</i> </a>
+                            </div>
                             <table class="table table-bordered table-striped table-condensed table-hover smart-form has-tickbox">
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Prenom)
+                                        @Html.DisplayNameFor(model => model.First().Prenom)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Nom)
+                                        @Html.DisplayNameFor(model => model.First().Nom)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.DateNaissance)
+                                        @Html.DisplayNameFor(model => model.First().DateNaissance)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Email)
+                                        @Html.DisplayNameFor(model => model.First().Email)
 
                                     </th>
 
@@ -98,10 +102,15 @@
 
                         </div>
                         <!-- end widget content -->
-
+                        <!--widget footer-->
+                        <div class="widget-footer">
+                            <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+                            @Html.PagedListPager(Model, page => Url.Action("listeUtilisateurs", new { page }))
+                        </div>
+                        <!--end widget footer-->
                     </div>
                     <!-- end widget div -->
-
+                    
                 </div>
                 <!-- end widget -->
             </article>

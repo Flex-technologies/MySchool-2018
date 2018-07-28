@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MySchoolLibrary2018.Models.RoleListViewModel>
+﻿@model PagedList<MySchoolLibrary2018.Models.RoleListViewModel>
+@using PagedList.Mvc;
+@using PagedList;
 
 @{
     ViewBag.Title = "Roles";
@@ -51,20 +53,20 @@
             <article class="col-sm-12 ">
 
                 <!-- Widget ID (each widget will need unique ID)-->
-                <div class="jarviswidget" id="wid-id-0">
+                <div class="jarviswidget" id="wid-id-0" style="position: relative; opacity: 1;">
                     <!-- widget options:
-                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
-                        data-widget-colorbutton="false"
-                        data-widget-editbutton="false"
-                        data-widget-togglebutton="false"
-                        data-widget-deletebutton="false"
-                        data-widget-fullscreenbutton="false"
-                        data-widget-custombutton="false"
-                        data-widget-collapsed="true"
-                        data-widget-sortable="false"
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
 
-                    -->
+    -->
                     <header>
                         <h2><strong>Liste des groupes</strong> <i>(Role)</i></h2>
 
@@ -83,60 +85,73 @@
                         <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body">
-
+                            <div class="widget-body-toolbar">
+                                
+                                    <a href="@Url.Action("AjouterRole", "Admin")" class="btn btn-default b"> <i>Ajouter</i> </a>
+                                
+                            </div>
                             <table class="table table-bordered table-striped table-condensed table-hover smart-form has-tickbox">
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.RoleName)
+                                        @*@Html.DisplayNameFor(model => model.RoleName)*@
+                                        Nom
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Description)
+                                        @*@Html.DisplayNameFor(model => model.Description)*@
+                                        Description
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.TotalUtilisateurs)
+                                        @*@Html.DisplayNameFor(model => model.TotalUtilisateurs)*@
+                                        Utilisateurs
                                     </th>
                                     <th></th>
                                 </tr>
 
                                 @foreach (var item in Model)
-            {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RoleName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TotalUtilisateurs)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Modifier", "ModifierRole", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "DetailsRole", new { id = item.Id }) |
-                            @Html.ActionLink("Supprimer", "SupprimerRole", new { id = item.Id })
-                        </td>
-                    </tr>
-}
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RoleName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalUtilisateurs)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Modifier", "ModifierRole", new { id = item.Id }) |
+                                            @Html.ActionLink("Details", "DetailsRole", new { id = item.Id }) |
+                                            @Html.ActionLink("Supprimer", "SupprimerRole", new { id = item.Id })
+                                        </td>
+                                    </tr>
+                                }
 
                             </table>
 
 
                         </div>
-                        <p>
-                            <a href="@Url.Action("AjouterRole", "Admin")" class="btn btn-default b"> <i>Ajouter</i> </a>
-                        </p>
+
+                      
+
                         <!-- end widget content -->
-
+                        <!--widget footer-->
+                        <div class="widget-footer">
+                            <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+                            @Html.PagedListPager(Model, page => Url.Action("Roles", new { page }))
+                        </div>
+                        <!--end widget footer-->
                     </div>
-                    <!-- end widget div -->
 
+                    <!-- end widget div -->
+                  
                 </div>
                 <!-- end widget -->
-
+               
 
             </article>
             <!-- WIDGET END -->
-           
+
 
 
         </div>
@@ -149,5 +164,3 @@
 
 </div>
 <!-- END MAIN CONTENT -->
-
-

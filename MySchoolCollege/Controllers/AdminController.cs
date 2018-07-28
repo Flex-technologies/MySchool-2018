@@ -14,6 +14,8 @@ using System.Data.Entity;
 //using MySchoolCollege.Models.Utilitys;
 using MySchoolLibrary2018.Models;
 using MySchoolLibrary2018.Models.ModelViews;
+using PagedList;
+using MySchoolCollege.Properties;
 
 namespace MySchoolCollege.Controllers
 {
@@ -33,7 +35,7 @@ namespace MySchoolCollege.Controllers
         
 
         //GET: Liste des roles
-        public ActionResult Roles()
+        public ActionResult Roles(int? page)
         {
 
             List<RoleListViewModel> model = new List<RoleListViewModel>();
@@ -47,13 +49,16 @@ namespace MySchoolCollege.Controllers
                     TotalUtilisateurs = r.Users.Count
                 }
                                                 ).ToList();
+
             }
             catch (Exception e)
             {
                 //ViewBag.Message = "Aucun enregistrement retouné!";
                 ViewBag.Message = e.Message;
             }
-            return View(model);
+            var pageNumber = page ?? 1;
+
+            return View(model.ToPagedList(pageNumber, int.Parse(Resources.NombreLigneParPage)));
         }
 
         //GET: Détails role
@@ -251,7 +256,7 @@ namespace MySchoolCollege.Controllers
         }
 
         //GET: liste des utilisateurs
-        public ActionResult ListeUtilisateurs()
+        public ActionResult ListeUtilisateurs(int? page)
         {
 
 
@@ -274,7 +279,8 @@ namespace MySchoolCollege.Controllers
 
             }
              ).ToList();
-            return View(model);
+            var pageNumber = page ?? 1;
+            return View(model.ToPagedList(pageNumber, int.Parse(Resources.NombreLigneParPage)));
         }
 
         //GET: Ajouter un  utilisateur
