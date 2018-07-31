@@ -608,11 +608,73 @@ namespace MySchoolCollege.Controllers
 
             return View(model);
         }
-        
+
         //TODO GET: Supprimer un  utilisateur
 
         //TODO POST: Supprimer un utilisateur
 
-        
+        //
+        // GET: /Account/ResetPassword
+        public ActionResult ResetPassword()
+        {
+            string code = UserManager.GeneratePasswordResetToken(User.Identity.GetUserId());
+            ResetPasswordViewModel model = new ResetPasswordViewModel();
+            model.Email = User.Identity.GetUserName();
+            model.Code = code;
+            return code == null ? View("Error") : View(model);
+        }
+
+        //
+        // POST: /Account/ResetPassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await UserManager.FindByNameAsync(model.Email);
+            if (user == null)
+            {
+                // Ne révélez pas que l'utilisateur n'existe pas
+                return RedirectToAction("ResetPasswordConfirmation", "Admin");
+            }
+            //Vérification du mot de passe actuelle
+            var passwordCorrect = await UserManager.CheckPasswordAsync(user, model.OldPassword);
+            if (!passwordCorrect)
+            {
+                ModelState.AddModelError("", "L'ancien mot de passe n'est pas valide!");
+                return View(model);
+            }
+            else
+            {
+                var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.OldPassword);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ResetPasswordConfirmation", "Admin");
+                }
+
+                AddErrors(result);
+            }
+            return View();
+        }
+
+        //
+        // GET: /Account/ResetPasswordConfirmation
+        [AllowAnonymous]
+        public ActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
     }
 }

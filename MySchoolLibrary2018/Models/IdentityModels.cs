@@ -37,6 +37,7 @@ namespace MySchoolLibrary2018.Models
         public string Ville { get; set; }
         public string Pays { get; set; }
         public string CodePostal { get; set; }
+        public string Photo { get; set; }
 
         //public  ICollection<ApplicationRole> GRoles { get; set; }
     }

@@ -63,7 +63,7 @@
 
                                 @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
                                 @Html.ValidationSummary("", new { @class = "text-danger padding" })
-                                
+
                                 <div class="alert-danger">
                                     @ViewBag.MessageError
                                 </div>
@@ -76,162 +76,162 @@
                                                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                                             </label>
                                         </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-
-                                                <label class="input">
-                                                    @Html.EditorFor(model => model.Matricule, new { htmlAttributes = new { placeholder = "Matricule" } })
-                                                    @Html.ValidationMessageFor(model => model.Matricule, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-
-                                                <label class="select">
-                                                    @Html.EnumDropDownListFor(model => model.Civillite, "Civilité", "disabled")
-                                                    <i></i>
-                                                    @Html.ValidationMessageFor(model => model.Civillite, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-
-                                                <label class="input">
-                                                    @Html.EditorFor(model => model.Prenom, new { htmlAttributes = new { placeholder = "Prénom" } })
-                                                    @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-
-                                                <label class="input">
-                                                    @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { placeholder = "Nom" } })
-                                                    @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-
-                                                <label class="input">
-                                                    <i class="icon-append fa fa-calendar"></i>
-                                                    @Html.EditorFor(model => model.DateNaissance, new { htmlAttributes = new { @class = "datepicker", placeholder = "Date de naissance" } })
-                                                    @Html.ValidationMessageFor(model => model.DateNaissance, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-
-                                                <label class="input">
-
-                                                    @Html.EditorFor(model => model.LieuDeNaissance, new { htmlAttributes = new { placeholder = "Lieu de naissance" } })
-                                                    @Html.ValidationMessageFor(model => model.LieuDeNaissance, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label class="input">
-                                                    @Html.EditorFor(model => model.Nationalite, new { htmlAttributes = new { placeholder = "Nationalité" } })
-                                                    @Html.ValidationMessageFor(model => model.Nationalite, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label class="input">
-                                                    <i class="icon-append fa fa-envelope-o"></i>
-                                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Email" } })
-                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label class="input">
-                                                    @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { placeholder = "Téléphone" } })
-                                                    @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label class="input">
-                                                    @Html.EditorFor(model => model.CodePostal, new { htmlAttributes = new { placeholder = "Code postal" } })
-                                                    @Html.ValidationMessageFor(model => model.CodePostal, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-6">
 
                                             <label class="input">
-                                                <i class="icon-append fa fa-map-marker"></i>
-                                                @Html.EditorFor(model => model.Adresse, new { htmlAttributes = new { placeholder = "Adresse" } })
-                                                @Html.ValidationMessageFor(model => model.Adresse, "", new { @class = "text-danger" })
+                                                @Html.EditorFor(model => model.Matricule, new { htmlAttributes = new { placeholder = "Matricule" } })
+                                                @Html.ValidationMessageFor(model => model.Matricule, "", new { @class = "text-danger" })
                                             </label>
                                         </section>
-
-                                        <div class="row">
-                                            <section class="col col-6">
-
-                                                <label class="input">
-
-                                                    @Html.EditorFor(model => model.Ville, new { htmlAttributes = new { placeholder = "Ville" } })
-                                                    @Html.ValidationMessageFor(model => model.Ville, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-
-                                                <label class="input">
-
-                                                    @Html.EditorFor(model => model.Pays, new { htmlAttributes = new { placeholder = "Pays" } })
-                                                    @Html.ValidationMessageFor(model => model.Pays, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-
-                                                <label class="input">
-                                                    <i class="icon-append fa fa-lock"></i>
-                                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Mot de passe" } })
-                                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-
-                                                <label class="input">
-                                                    <i class="icon-append fa fa-lock"></i>
-                                                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { placeholder = "Confirmer le mot de passe" } })
-                                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                        </div>
-
-                                        <div class="row">
-                                            <section class="col col-6">
-
-                                                <label class="select">
-
-                                                    @Html.DropDownListFor(model => model.ApplicationRoleId, Model.ApplicationRoles, "Sélectionner un Groupe", new { htmlAttributes = new { placeholder = "Sélectionner un groupe" } })
-                                                    <i></i>
-                                                    @Html.ValidationMessageFor(model => model.ApplicationRoleId, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-
-                                                <label class="select">
-                                                    @Html.DropDownListFor(model => model.FonctionId, Model.Fonctions, "Sélectionner la fonction", new { htmlAttributes = new { placeholder = "Fonction" } })
-                                                    <i></i>
-                                                    @Html.ValidationMessageFor(model => model.FonctionId, "", new { @class = "text-danger" })
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <section>
+                                        <section class="col col-6">
 
                                             <label class="select">
-                                                @Html.DropDownListFor(model => model.ParentId, Model.Parents, "Sélectionner un parent")
+                                                @Html.EnumDropDownListFor(model => model.Civillite, "Civilité", "disabled")
                                                 <i></i>
-                                                @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(model => model.Civillite, "", new { @class = "text-danger" })
                                             </label>
                                         </section>
-</fieldset>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-6">
+
+                                            <label class="input">
+                                                @Html.EditorFor(model => model.Prenom, new { htmlAttributes = new { placeholder = "Prénom" } })
+                                                @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+
+                                            <label class="input">
+                                                @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { placeholder = "Nom" } })
+                                                @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-6">
+
+                                            <label class="input">
+                                                <i class="icon-append fa fa-calendar"></i>
+                                                @Html.EditorFor(model => model.DateNaissance, new { htmlAttributes = new { @class = "datepicker", placeholder = "Date de naissance" } })
+                                                @Html.ValidationMessageFor(model => model.DateNaissance, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+
+                                            <label class="input">
+
+                                                @Html.EditorFor(model => model.LieuDeNaissance, new { htmlAttributes = new { placeholder = "Lieu de naissance" } })
+                                                @Html.ValidationMessageFor(model => model.LieuDeNaissance, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-6">
+                                            <label class="input">
+                                                @Html.EditorFor(model => model.Nationalite, new { htmlAttributes = new { placeholder = "Nationalité" } })
+                                                @Html.ValidationMessageFor(model => model.Nationalite, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+                                            <label class="input">
+                                                <i class="icon-append fa fa-envelope-o"></i>
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Email" } })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-6">
+                                            <label class="input">
+                                                @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { placeholder = "Téléphone" } })
+                                                @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+                                            <label class="input">
+                                                @Html.EditorFor(model => model.CodePostal, new { htmlAttributes = new { placeholder = "Code postal" } })
+                                                @Html.ValidationMessageFor(model => model.CodePostal, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <section>
+
+                                        <label class="input">
+                                            <i class="icon-append fa fa-map-marker"></i>
+                                            @Html.EditorFor(model => model.Adresse, new { htmlAttributes = new { placeholder = "Adresse" } })
+                                            @Html.ValidationMessageFor(model => model.Adresse, "", new { @class = "text-danger" })
+                                        </label>
+                                    </section>
+
+                                    <div class="row">
+                                        <section class="col col-6">
+
+                                            <label class="input">
+
+                                                @Html.EditorFor(model => model.Ville, new { htmlAttributes = new { placeholder = "Ville" } })
+                                                @Html.ValidationMessageFor(model => model.Ville, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+
+                                            <label class="input">
+
+                                                @Html.EditorFor(model => model.Pays, new { htmlAttributes = new { placeholder = "Pays" } })
+                                                @Html.ValidationMessageFor(model => model.Pays, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-6">
+
+                                            <label class="input">
+                                                <i class="icon-append fa fa-lock"></i>
+                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Mot de passe" } })
+                                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+
+                                            <label class="input">
+                                                <i class="icon-append fa fa-lock"></i>
+                                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { placeholder = "Confirmer le mot de passe" } })
+                                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+
+                                    <div class="row">
+                                        <section class="col col-6">
+
+                                            <label class="select">
+
+                                                @Html.DropDownListFor(model => model.ApplicationRoleId, Model.ApplicationRoles, "Sélectionner un Groupe", new { htmlAttributes = new { placeholder = "Sélectionner un groupe" } })
+                                                <i></i>
+                                                @Html.ValidationMessageFor(model => model.ApplicationRoleId, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+
+                                            <label class="select">
+                                                @Html.DropDownListFor(model => model.FonctionId, Model.Fonctions, "Sélectionner la fonction", new { htmlAttributes = new { placeholder = "Fonction" } })
+                                                <i></i>
+                                                @Html.ValidationMessageFor(model => model.FonctionId, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <section>
+
+                                        <label class="select">
+                                            @Html.DropDownListFor(model => model.ParentId, Model.Parents, "Sélectionner un parent")
+                                            <i></i>
+                                            @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
+                                        </label>
+                                    </section>
+                                </fieldset>
                                 <footer>
 
                                     <button class="btn btn-primary" type="submit">
@@ -325,17 +325,17 @@
         // DO NOT REMOVE : GLOBAL FUNCTIONS!
 
         $(document).ready(function () {
-            
+
             $.datepicker.setDefaults($.datepicker.regional["fr"]);
             $('.datepicker').datepicker({
                 dateFormat: 'dd/mm/yy'
 
             });
 
-           
+
 
         })
-     </script>
+    </script>
 
 
 }

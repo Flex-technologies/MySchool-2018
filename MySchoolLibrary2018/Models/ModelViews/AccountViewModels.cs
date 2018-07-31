@@ -110,7 +110,13 @@ namespace MySchoolLibrary2018.Models
         [Required]
         [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Mot de passe")]
+        [Display(Name = "Ancien Mot de passe")]
+        public string OldPassword { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Nouveau Mot de passe")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
