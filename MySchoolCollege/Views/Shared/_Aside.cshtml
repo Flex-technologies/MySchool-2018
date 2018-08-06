@@ -43,8 +43,8 @@
                         <li class="@Html.RouteIf("settings", "active")">
                             <a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa-gear"></i> <span class="menu-item-parent">Paramétres</span></a>
                             <ul>
-                                <li class="@Html.RouteIf("professeur", "active")">
-                                    <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Etablissements</span></a>
+                                <li class="@Html.RouteIf("Etablissements", "active")">
+                                    <a href="@Url.Action("Etablissements","Parametre")"><i class="fa fa-lg fa-fw fa-bank"></i> <span class="menu-item-parent">Etablissements</span></a>
 
                                 </li>
                                 <li class="@Html.RouteIf("professeur", "active")">

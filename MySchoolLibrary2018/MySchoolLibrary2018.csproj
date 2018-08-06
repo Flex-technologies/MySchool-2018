@@ -120,6 +120,7 @@
     <Compile Include="Models\Matiere.cs" />
     <Compile Include="Models\Mention.cs" />
     <Compile Include="Models\ModelViews\AccountViewModels.cs" />
+    <Compile Include="Models\ModelViews\ListeEtablissementViewModel.cs" />
     <Compile Include="Models\ModelViews\ManageViewModels.cs" />
     <Compile Include="Models\ModelViews\RoleListViewModel.cs" />
     <Compile Include="Models\ModelViews\RoleViewModel.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Models\Orientation.cs" />
     <Compile Include="Models\PeriodePersonnalisee.cs" />
     <Compile Include="Models\PointageEtudiant.cs" />
+    <Compile Include="Models\Repositories\EtablissementRepository.cs" />
     <Compile Include="Models\Semestre.cs" />
     <Compile Include="Models\TypeEtablissement.cs" />
     <Compile Include="Models\UniteEnseignement.cs" />

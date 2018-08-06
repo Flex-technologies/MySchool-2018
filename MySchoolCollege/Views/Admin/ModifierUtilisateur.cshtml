@@ -36,7 +36,7 @@
 
                     -->
                     <header>
-                        <h2><strong>Ajouter un </strong> <i>utilisateur</i></h2>
+                        <h2><strong>Modifier un </strong> <i>utilisateur</i></h2>
 
                     </header>
 
@@ -57,7 +57,7 @@
                             @using (Html.BeginForm("ModifierUtilisateur", "Admin", FormMethod.Post, new { @class = "smart-form" }))
                             {
                                 @Html.AntiForgeryToken()
-                                <header>Ajouter un utilisateur</header>
+                                <header>Modifier un utilisateur</header>
 
                                 @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
                                 @Html.ValidationSummary("", new { @class = "text-danger padding" })

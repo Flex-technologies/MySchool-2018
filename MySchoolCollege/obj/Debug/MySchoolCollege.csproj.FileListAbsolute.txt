@@ -173,3 +173,4 @@ C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolC
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\bin\PagedList.Mvc.xml
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Properties.Resources.resources
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb27.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb28.resources
