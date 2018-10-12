@@ -4,125 +4,267 @@
     ViewBag.Title = "Details Role";
 }
 
-<h2>Details du groupe: @Model.Id</h2>
-
-<div>
-    <h4>Role</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RoleName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RoleName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreation)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateModification)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateModification)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "ModifierRole", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Roles")
-</p>
-<div>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-horizontal">
-            <h4>Ajouter un utilisateur au groupe</h4>
-            <div class="form-group">
-                @Html.HiddenFor(model => model.Id)
-                <label asp-for="UtilisateurId" class="control-label col-md-2">Utilisateurs</label>
-                <div class="col-md-10">
-                    
-                    @Html.DropDownListFor(m => m.UtilisateurId, Model.Utilisateurs, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Ajouter" class="btn btn-default" />
-                </div>
-            </div>
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa  fa-users"></i>
+                Details Groupe (Roles): @Model.RoleName
+            </h1>
         </div>
-    }
-</div>
-@{ if (ViewBag.MessageSucces != null)
-    {
-      <div class="alert-@ViewBag.MessageClass">
-    @ViewBag.MessageSucces
+    </div>
+    @Html.Partial("_Message")
+
+    <div class="jarviswidget jarviswidget-sortable" id="wid-id-11" role="widget" data-widget-custombutton="false" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-togglebutton="false">
+        <!-- widget options:
+            usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+            data-widget-colorbutton="false"
+            data-widget-editbutton="false"
+            data-widget-togglebutton="false"
+            data-widget-deletebutton="false"
+            data-widget-fullscreenbutton="false"
+            data-widget-custombutton="false"
+            data-widget-collapsed="true"
+            data-widget-sortable="false"
+
+        -->
+        <header class="ui-sortable-handle" role="heading">
+            <h2><strong>Détails Groupe (Role):</strong> <i>@Model.RoleName</i></h2>
+
+            <ul class="nav nav-tabs pull-right" id="widget-tab-1">
+                <li class="active">
+                    <a href="#hr1" data-toggle="tab"> <i class="fa fa-lg fa-arrow-circle-o-down"></i> <span class="hidden-mobile hidden-tablet"> Informations </span> </a>
+                </li>
+                <li>
+                    <a href="#hr2" data-toggle="tab"> <i class="fa fa-lg fa-arrow-circle-o-up"></i> <span class="hidden-mobile hidden-tablet"> Ajouter un utilisateur </span></a>
+                </li>
+            </ul>
+
+            <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+        </header>
+        <!-- widget div-->
+        <div role="content">
+
+            <!-- widget edit box -->
+            <div class="jarviswidget-editbox">
+                <!-- This area used as dropdown edit box -->
+
+            </div>
+            <!-- end widget edit box -->
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+                <!-- widget body text-->
+
+                <div class="tab-content padding-10">
+                    <div class="tab-pane fade in active" id="hr1">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.RoleName)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.RoleName)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Description)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DateCreation)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.DateCreation)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DateModification)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.DateModification)
+                            </dd>
+
+                        </dl>
+                    </div>
+                    <div class="tab-pane fade" id="hr2">
+
+                        <fieldset>
+                            <div class="col col-lg-6">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-horizontal">
+                                        <h4>Ajouter un utilisateur au groupe</h4>
+                                        <div class="form-group">
+                                            @Html.HiddenFor(model => model.Id)
+                                            <label asp-for="UtilisateurId" class="control-label col-md-2">Utilisateurs</label>
+                                            <div class="col-md-10">
+
+                                                @Html.DropDownListFor(m => m.UtilisateurId, Model.Utilisateurs, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Ajouter" class="btn btn-primary" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                </div>
+
+                <!-- end widget body text-->
+                <!-- widget footer -->
+                <div class="widget-footer text-right">
+
+                    <a href="@Url.Action("ModifierRole","Admin",new { id = Model.Id})" class="btn btn-primary">Modifier</a>
+                    <a href="@Url.Action("Roles","Admin")" class="btn bg-color-green txt-color-white">Retour</a>
+
+                </div>
+                <!-- end widget footer -->
+
+            </div>
+            <!-- end widget content -->
+
         </div>
-    }
- }
+        <!-- end widget div -->
 
-<row>
+    </div>
 
-    <div><h4>Liste des utilisateurs du groupe</h4></div>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Users.First().Prenom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Users.First().Nom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Users.First().DateNaissance)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Users.First().Email)
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
 
-            </th>
+        <!-- row -->
+        <div class="row">
 
-            <th></th>
-        </tr>
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 ">
 
-        @foreach (var item in Model.Users)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Prenom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateNaissance)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-0">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
-                </td>
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
 
-                <td>@Html.ActionLink("Enlever","DetailsRole",new { id = Model.Id, utilisateurId = item.Id, sup = true})
-                
-                </td>
-            </tr>
-        }
+                    -->
+                    <header role="heading">
+                        <span class="widget-icon"> <i class="fa fa-user"></i> </span>
+                        <h2><strong>Liste des</strong> <i>utilisateurs du groupe  @Model.RoleName</i></h2>
 
-    </table>
-</row>
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <input class="form-control" type="text">
+                            <span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            <div id="dt_basic_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                <div class="dt-toolbar">
+                                    
+                                </div>
+                                <table id="dt_basic" class="table table-striped table-bordered table-hover dataTable no-footer" width="100%" role="grid" aria-describedby="dt_basic_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Users.First().Prenom)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Users.First().Nom)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Users.First().DateNaissance)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Users.First().Email)
+
+                                            </th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model.Users)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Prenom)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Nom)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DateNaissance)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Email)
+
+                                                </td>
+
+                                                <td>
+                                                    @Html.ActionLink("Enlever", "DetailsRole", new { id = Model.Id, utilisateurId = item.Id, sup = true })
+
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <div class="dt-toolbar-footer">
+                                    <div class="col-sm-6 col-xs-12 hidden-xs">
+                                        <div class="dataTables_info" id="dt_basic_info" role="status" aria-live="polite">
+                                            Total @Model.Users.Count items
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="dt_basic_paginate">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- WIDGET END -->
+        </div>
+
+        <!-- end row -->
+
+
+    </section>
+    <!-- end widget grid -->
+</div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySchoolLibrary2018.Models.ModelViews;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +14,23 @@ namespace MySchoolLibrary2018.Models
         public Boolean LivretStandard { get; set; }
         public Boolean LivretBacGeneral { get; set; }
         public Boolean LivretBacPro { get; set; }
+
+        /// <summary>
+        /// Génére le model à partir du viewModel
+        /// </summary>
+        /// <returns></returns>
+        public AvisCEViewModel ToModel()
+        {
+            var avisce = new AvisCEViewModel
+            {
+                Id = Id,
+                Avis = Avis,
+                Brevet = Brevet,
+                LivretBacGeneral = LivretBacGeneral,
+                LivretBacPro = LivretBacPro,
+                LivretStandard = LivretStandard
+            };
+            return avisce;
+        }
     }
 }

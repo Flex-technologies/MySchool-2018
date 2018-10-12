@@ -70,6 +70,8 @@ namespace MySchoolLibrary2018.Models.ModelViews
         public string Pays { get; set; }
         public string Telephone { get; set; }
         public string CodePostal { get; set; }
+        public string Photo { get; set; }
+        public List<ApplicationRole> Roles { get; set; }
     }
 
     public class UtilisateurViewUpDateModel
@@ -115,5 +117,8 @@ namespace MySchoolLibrary2018.Models.ModelViews
         public string Pays { get; set; }
         public string Telephone { get; set; }
         public string CodePostal { get; set; }
+        public string Photo { get; set; }
+
+        public List<ApplicationRole> Roles { get; set; }
     }
 }

@@ -22,3 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Set pagination margin*/
+.pagination{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+

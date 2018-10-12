@@ -6,7 +6,7 @@
 }
 
 @section topright{
-    <span id="extr-page-header-space"> <span class="hidden-mobile">Need an account?</span> <a href="@Url.Action("register", "account")" class="btn btn-danger">Create account</a> </span>
+    <span id="extr-page-header-space"> <span class="hidden-mobile">Demander un démo</span> <a href="@Url.Action("register", "account")" class="btn btn-danger">Demander</a> </span>
 }
 
 <div id="content" class="container">
@@ -26,7 +26,7 @@
                             <label class="label">E-mail</label>
                             <label class="input">
                                 <i class="icon-append fa fa-user"></i>
-                                <input type="email" name="email" value="demo@email.com">
+                                <input type="email" name="email" value="">
                                 <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Entrer votre Email</b>
                             </label>
                         </section>
@@ -35,7 +35,7 @@
                             <label class="label">Password</label>
                             <label class="input">
                                 <i class="icon-append fa fa-lock"></i>
-                                <input type="password" name="password" value="demo">
+                                <input type="password" name="password" value="">
                                 <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Entrer votre mot de passe</b>
                             </label>
                             <div class="note">
@@ -47,18 +47,18 @@
                             <label class="checkbox">
                                 <input type="checkbox" name="rememberMe" value="true" checked="checked">
                                 <input type="hidden" name="rememberMe" value="false" />
-                                <i></i>Stay signed in
+                                <i></i>Rester connecté
                             </label>
                         </section>
                     </fieldset>
                     <footer>
                         <button type="submit" class="btn btn-primary">
-                            Sign in
+                            Se connecter
                         </button>
                     </footer>
                 </form>
             </div>
-            @{ Html.RenderPartial("_SocialMedia"); }
+          
         </div>
     </div>
 </div>
@@ -83,11 +83,11 @@
                 // Messages for form validation
                 messages: {
                     email: {
-                        required: 'Please enter your email address',
-                        email: 'Please enter a VALID email address'
+                        required: 'S\'il vous plaît entrer votre adresse e-mail',
+                        email: 'S\'il vous plaît, mettez une adresse email valide'
                     },
                     password: {
-                        required: 'Please enter your password'
+                        required: 's\'il vous plait entrez votre mot de passe'
                     }
                 },
 

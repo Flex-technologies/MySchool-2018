@@ -9,8 +9,8 @@ namespace MySchoolLibrary2018.Models
     {
         public int Id { get; set; }
         public string Nom { get; set; }
-        public TypeEtablissement Type { get; set; }
-        public string Addresse { get; set; }
+        public virtual TypeEtablissement Type { get; set; }
+        public string Adresse { get; set; }
         public string Ville { get; set; }
         public string Pays { get; set; }
         public string TelephoneSecretariat { get; set; }
@@ -20,7 +20,7 @@ namespace MySchoolLibrary2018.Models
         public string SiteWeb { get; set; }
         public DateTime DateCreation { get; set; }
         public DateTime DateModification { get; set; }
-        public ApplicationUser CreerPar { get; set; }
-        public ApplicationUser Modifierpar { get; set; }
+        public virtual ApplicationUser CreerPar { get; set; }
+        public virtual ApplicationUser Modifierpar { get; set; }
     }
 }

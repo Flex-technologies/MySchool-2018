@@ -9,12 +9,12 @@ namespace MySchoolLibrary2018.Models
     {
         public int Id { get; set; }
         public string Nom { get; set; }
-        public Niveau Niveau { get; set; }
-        public Filiere Filiere { get; set; }
-        public Etablissement Etablissement { get; set; }
+        public virtual Niveau Niveau { get; set; }
+        public virtual Filiere Filiere { get; set; }
+        public virtual Etablissement Etablissement { get; set; }
 
-        public ApplicationUser CreerPar { get; set; }
-        public ApplicationUser Modifierpar { get; set; }
+        public virtual ApplicationUser CreerPar { get; set; }
+        public virtual ApplicationUser Modifierpar { get; set; }
         public DateTime CreeLe { get; set; }
         public DateTime ModifierLe { get; set; }
 
@@ -24,13 +24,13 @@ namespace MySchoolLibrary2018.Models
     public class Classe
     {
         public int Id { get; set; }
-        public ApplicationUser ProfesseurPrincipal { get; set; }
-        public ClasseDeBase ClasseDeBase { get; set; }        
-        public AnneeScolaire AnneeScolaire { get; set; }
+        public virtual ApplicationUser ProfesseurPrincipal { get; set; }
+        public virtual ClasseDeBase ClasseDeBase { get; set; }        
+        public virtual AnneeScolaire AnneeScolaire { get; set; }
 
 
-        public ApplicationUser CreerPar { get; set; }
-        public ApplicationUser Modifierpar { get; set; }
+        public virtual ApplicationUser CreerPar { get; set; }
+        public virtual ApplicationUser Modifierpar { get; set; }
         public DateTime CreeLe { get; set; }
         public DateTime ModifierLe { get; set; }
     }

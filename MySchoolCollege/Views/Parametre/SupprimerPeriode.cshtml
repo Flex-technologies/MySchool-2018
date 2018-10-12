@@ -1,0 +1,174 @@
+﻿@model MySchoolLibrary2018.Models.ModelViews.PeriodeViewModel
+@{
+    ViewBag.Title = "Supprimer une Période";
+}
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-list-alt fa-calendar-o"></i>
+                Périodes
+            </h1>
+        </div>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <!-- row -->
+        <div class="row">
+
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-color-red" id="wid-id-0" data-widget-colorbutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <h2><strong>Supprimé une </strong> <i>période</i></h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <input class="form-control" type="text">
+                            <span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+
+                            @using (Html.BeginForm("SupprimerPeriodeConfirmation", "Parametre", FormMethod.Post, new { @class = "smart-form" }))
+                            {
+                                <header>Confirmez-vous la suppression de la période?</header>
+                                <fieldset>
+                                    <div>
+                                        <h4 class="alert alert-danger">
+                                            Nom: @Model.Periode (@Model.DateDebut  - @Model.DateFin)
+                                        </h4>
+                                    </div>
+                                </fieldset>
+                                <footer>
+                                    @Html.HiddenFor(model => model.Id)
+                                    <button class="btn btn-danger" type="submit">
+                                        Supprimer
+                                    </button>
+                                    <button class="btn btn-default" onclick="window.history.back();" type="button">
+                                        Annuler
+                                    </button>
+
+                                </footer>
+
+                            }
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+
+            </article>
+            <!-- WIDGET END -->
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-question"></i> </span>
+                        <h2 class="font-md"><strong>Guide</strong> <i>d'utilisation</i></h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body smart-form no-padding">
+                            <header>Cette page vous permet de confirmer ou d'annuler la suppression d'une période</header>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+
+
+            </article>
+            <!-- WIDGET END -->
+
+
+        </div>
+
+        <!-- end row -->
+
+
+    </section>
+    <!-- end widget grid -->
+
+</div>
+
+@section pagespecific {
+    <script type="text/javascript">
+
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+        $(document).ready(function () {
+
+            $.datepicker.setDefaults($.datepicker.regional["fr"]);
+            $('.datepicker').datepicker({
+                dateFormat: 'dd/mm/yy'
+
+            });
+
+
+
+        })
+    </script>
+
+
+}
+

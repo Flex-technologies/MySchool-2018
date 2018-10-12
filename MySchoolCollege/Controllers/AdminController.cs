@@ -14,6 +14,8 @@ using System.Data.Entity;
 //using MySchoolCollege.Models.Utilitys;
 using MySchoolLibrary2018.Models;
 using MySchoolLibrary2018.Models.ModelViews;
+using PagedList;
+using MySchoolCollege.Properties;
 
 namespace MySchoolCollege.Controllers
 {
@@ -33,7 +35,7 @@ namespace MySchoolCollege.Controllers
         
 
         //GET: Liste des roles
-        public ActionResult Roles()
+        public ActionResult Roles(int? page)
         {
 
             List<RoleListViewModel> model = new List<RoleListViewModel>();
@@ -47,13 +49,16 @@ namespace MySchoolCollege.Controllers
                     TotalUtilisateurs = r.Users.Count
                 }
                                                 ).ToList();
+
             }
             catch (Exception e)
             {
                 //ViewBag.Message = "Aucun enregistrement retouné!";
                 ViewBag.Message = e.Message;
             }
-            return View(model);
+            var pageNumber = page ?? 1;
+
+            return View(model.ToPagedList(pageNumber, int.Parse(Resources.NombreLigneParPage)));
         }
 
         //GET: Détails role
@@ -69,8 +74,7 @@ namespace MySchoolCollege.Controllers
                 model.Description = role.Description;
                 model.DateCreation = role.DateCreation;
                 model.DateModification = role.DateModification;
-                model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
-                model.Utilisateurs = UserManager.Users.Select(s => new SelectListItem { Value = s.Id, Text = s.Prenom + " " + s.Nom }).ToList();
+               
             }
             else
             {
@@ -89,6 +93,9 @@ namespace MySchoolCollege.Controllers
                     ViewBag.MessageClass = "success";
                 }
             }
+            model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
+            var userAEnlever = model.Users.Select(x => x.Id).ToArray();
+            model.Utilisateurs = UserManager.Users.Where(x => !userAEnlever.Contains(x.Id)).Select(s => new SelectListItem { Value = s.Id, Text = s.Prenom + " " + s.Nom }).ToList();
 
             return View(model);
         }
@@ -98,6 +105,7 @@ namespace MySchoolCollege.Controllers
         {
             ApplicationRole role = RoleManager.FindById(id);
             RoleViewModel model = new RoleViewModel();
+            
             if (role != null)
             {
                 model.Id = role.Id;
@@ -105,9 +113,7 @@ namespace MySchoolCollege.Controllers
                 model.DateCreation = role.DateCreation;
                 model.DateModification = role.DateModification;
                 model.RoleName = role.Name;
-                model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
-                model.Utilisateurs = UserManager.Users.Select(s => new SelectListItem { Text = s.Prenom + " " + s.Nom, Value = s.Id }).ToList();
-
+               
                 //Ajouter un utilisateur dans le groupe               
                 if (!string.IsNullOrEmpty(utilisateurId))
                 {
@@ -115,15 +121,19 @@ namespace MySchoolCollege.Controllers
                     if (roleResult.Succeeded)
                     {
                         model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
-                        ViewBag.MessageSucces = "Utilisateur ajouté avec succés";
-                        ViewBag.MessageClass = "success";
+                        TempData["Message"] = "Utilisateur ajouté avec succés";
+                        
                     }
                     else
                     {
-                        ViewBag.MessageSucces = "Utilisateur déja dans le groupe";
-                        ViewBag.MessageClass = "danger";
+                        TempData["MessageErreur"] = "Utilisateur déja dans le groupe";
+                        
                     }
                 }
+                model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
+                var userAEnlever = model.Users.Select(x => x.Id).ToArray();
+                model.Utilisateurs = UserManager.Users.Where(x => !userAEnlever.Contains(x.Id)).Select(s => new SelectListItem { Text = s.Prenom + " " + s.Nom, Value = s.Id }).ToList();
+
 
             }
 
@@ -156,6 +166,7 @@ namespace MySchoolCollege.Controllers
                     IdentityResult roleResult = RoleManager.Create(role);
                     if (roleResult.Succeeded)
                     {
+                        TempData["Message"] = "Role ajouté avec succès";
                         return RedirectToAction("Roles");
                     }
                 }
@@ -184,7 +195,7 @@ namespace MySchoolCollege.Controllers
             }
             else
             {
-                ViewBag.Message = "Aucun enregistrement trouvé";
+                return HttpNotFound();
 
             }
             return View(model);
@@ -205,6 +216,7 @@ namespace MySchoolCollege.Controllers
                     IdentityResult roleResult = RoleManager.Update(role);
                     if (roleResult.Succeeded)
                     {
+                        TempData["Message"] = "Role modifier avec succès";
                         return RedirectToAction("Roles");
                     }
                 }
@@ -224,11 +236,13 @@ namespace MySchoolCollege.Controllers
                 model.Id = role.Id;
                 model.RoleName = role.Name;
                 model.Description = role.Description;
+                model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
+                
 
             }
             else
             {
-                ViewBag.Message = "Aucun enregistrement trouvé";
+                return HttpNotFound();
 
             }
             return View(model);
@@ -236,14 +250,29 @@ namespace MySchoolCollege.Controllers
 
 
         //POST: Supprimer un role
+        [HttpPost]
         public ActionResult SupprimerRole(RoleViewModel model)
         {
             if (model != null)
             {
                 ApplicationRole role = RoleManager.FindById(model.Id);
+                var compteur = role.Users.Count;
+                var message = "";
+                var UsersId = role.Users.Select(u => u.UserId);
+                while (role.Users.Count != 0)
+                {
+                    role.Users.Clear();
+                   
+                }
+                
+                if(compteur != 0)
+                {
+                    message = compteur + " utilisateurs retirés et ";
+                }
                 IdentityResult roleResult = RoleManager.Delete(role);
                 if (roleResult.Succeeded)
                 {
+                    TempData["Message"] = message + "le groupe (role) a été supprimé avec succès";
                     return RedirectToAction("Roles");
                 }
             }
@@ -251,7 +280,7 @@ namespace MySchoolCollege.Controllers
         }
 
         //GET: liste des utilisateurs
-        public ActionResult ListeUtilisateurs()
+        public ActionResult ListeUtilisateurs(int? page)
         {
 
 
@@ -274,7 +303,8 @@ namespace MySchoolCollege.Controllers
 
             }
              ).ToList();
-            return View(model);
+            var pageNumber = page ?? 1;
+            return View(model.ToPagedList(pageNumber, int.Parse(Resources.NombreLigneParPage)));
         }
 
         //GET: Ajouter un  utilisateur
@@ -370,7 +400,7 @@ namespace MySchoolCollege.Controllers
                         {
                           
                         }
-
+                        TempData["Message"] = "Utilisateur ajouté avec succès";
                         return RedirectToAction("Listeutilisateurs", "Admin");
                     }
 
@@ -532,6 +562,7 @@ namespace MySchoolCollege.Controllers
                 var saveChanges = Db.SaveChanges();
                 if (saveChanges >= 1)
                 {
+                    TempData["Message"] = "Utilisateur modifier avec succès";
                     return RedirectToAction("listeUtilisateurs");
                 }
 
@@ -595,18 +626,80 @@ namespace MySchoolCollege.Controllers
                 model.Ville = user.Ville;
                 model.Telephone = user.PhoneNumber;
                 model.CodePostal = user.CodePostal;
-
+                model.Roles = user.Roles.Select(r => RoleManager.FindById(r.RoleId)).ToList();
 
 
             }
 
             return View(model);
         }
-        
+
         //TODO GET: Supprimer un  utilisateur
 
         //TODO POST: Supprimer un utilisateur
 
-        
+        //
+        // GET: /Account/ResetPassword
+        public ActionResult ResetPassword()
+        {
+            string code = UserManager.GeneratePasswordResetToken(User.Identity.GetUserId());
+            ResetPasswordViewModel model = new ResetPasswordViewModel();
+            model.Email = User.Identity.GetUserName();
+            model.Code = code;
+            return code == null ? View("Error") : View(model);
+        }
+
+        //
+        // POST: /Account/ResetPassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await UserManager.FindByNameAsync(model.Email);
+            if (user == null)
+            {
+                // Ne révélez pas que l'utilisateur n'existe pas
+                return RedirectToAction("ResetPasswordConfirmation", "Admin");
+            }
+            //Vérification du mot de passe actuelle
+            var passwordCorrect = await UserManager.CheckPasswordAsync(user, model.OldPassword);
+            if (!passwordCorrect)
+            {
+                ModelState.AddModelError("", "L'ancien mot de passe n'est pas valide!");
+                return View(model);
+            }
+            else
+            {
+                var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.OldPassword);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ResetPasswordConfirmation", "Admin");
+                }
+
+                AddErrors(result);
+            }
+            return View();
+        }
+
+        //
+        // GET: /Account/ResetPasswordConfirmation
+        [AllowAnonymous]
+        public ActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
     }
 }

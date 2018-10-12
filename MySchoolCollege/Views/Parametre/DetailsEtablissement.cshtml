@@ -1,0 +1,241 @@
+﻿@model MySchoolLibrary2018.Models.ModelViews.EtablissementViewModel
+@{
+    ViewBag.Title = "Details Etablissement";
+}
+<div id="content">
+    <h2><b>Etablissement:</b>  @Model.Nom</h2>
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="jarviswidget" id="wid-id-7" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false"  role="widget" style="">
+                    <!-- widget options:
+            usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+            data-widget-colorbutton="false"
+            data-widget-editbutton="false"
+            data-widget-togglebutton="false"
+            data-widget-deletebutton="false"
+            data-widget-fullscreenbutton="false"
+            data-widget-custombutton="false"
+            data-widget-collapsed="true"
+            data-widget-sortable="false"
+
+            -->
+                    <header role="heading">
+                        <div class="jarviswidget-ctrls" role="menu">   <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a>  <a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a></div>
+                        <ul class="nav nav-tabs pull-left in">
+
+                            <li class="active">
+
+                                <a data-toggle="tab" href="#hr1" aria-expanded="true"> <i class="fa fa-lg fa-arrow-circle-o-down"></i> <span class="hidden-mobile hidden-tablet"> Informations </span> </a>
+
+                            </li>
+
+                            <li class="">
+                                <a data-toggle="tab" href="#hr2" aria-expanded="false"> <i class="fa fa-lg fa-arrow-circle-o-up"></i> <span class="hidden-mobile hidden-tablet"> Divers </span> </a>
+                            </li>
+
+                        </ul>
+                        <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                    </header>
+
+                    <!-- widget div-->
+                    <div role="content">
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="hr1">
+
+                                    <div class="tabbable tabs-below">
+                                        <div class="tab-content padding-10">
+                                            <div class="tab-pane active" id="AA">
+                                                <div>
+                                                    <div>
+                                                        <b>Nom:</b> @Model.Nom
+                                                    </div>
+                                                    <div>
+                                                        <b>Type:</b> @Model.Type.Description
+                                                    </div>
+                                                    <div>
+                                                        <b>Adresse:</b> @Model.Adresse
+                                                    </div>
+                                                    <div>
+                                                        <b>Téléphone scolarité:</b> @Model.TelephoneScolarite
+                                                    </div>
+                                                    <div>
+                                                        <b>Téléphone sécrétariat:</b> @Model.TelephoneSecretariat
+                                                    </div>
+                                                    <div>
+                                                        <b>Fax:</b> @Model.Fax
+                                                    </div>
+                                                    <div>
+                                                        <b>Email:</b> @Model.Email
+                                                    </div>
+                                                    <div>
+                                                        <b>Site web:</b> @Model.SiteWeb
+                                                    </div>
+                                                    <div>
+                                                        <b>Ville/Pays:</b> @Model.Ville/@Model.Pays
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="BB">
+                                                <p>
+                                                     data here tab2
+                                                </p>
+                                            </div>
+                                            <div class="tab-pane" id="CC">
+                                                <p>
+                                                    data here tab3
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a data-toggle="tab" href="#AA" aria-expanded="false">Détails</a>
+                                            </li>
+                                            <li>
+                                                <a data-toggle="tab" href="#BB" aria-expanded="false">Filières</a>
+                                            </li>
+                                            <li>
+                                                <a data-toggle="tab" href="#CC" aria-expanded="false">Classes</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane " id="hr2">
+
+                                    <ul class="nav nav-tabs">
+                                        <li class="active">
+                                            <a href="#iss1" data-toggle="tab" aria-expanded="true">Item 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#iss2" data-toggle="tab" aria-expanded="true">Item 2</a>
+                                        </li>
+                                        <li>
+                                            <a href="#iss3" data-toggle="tab" aria-expanded="true">Item 3</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content padding-10">
+                                        <div class="tab-pane active" id="iss1">
+                                            <p>
+                                               data here item1
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane fade" id="iss2">
+                                            <p>
+                                                data here item2
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane fade" id="iss3">
+                                            <p>
+                                                data here item3
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+            </article>
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="jarviswidget" id="wid-id-5" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false" role="widget">
+                    <!-- widget options:
+            usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+            data-widget-colorbutton="false"
+            data-widget-editbutton="false"
+            data-widget-togglebutton="false"
+            data-widget-deletebutton="false"
+            data-widget-fullscreenbutton="false"
+            data-widget-custombutton="false"
+            data-widget-collapsed="true"
+            data-widget-sortable="false"
+
+            -->
+                    <header role="heading">
+                        <div class="jarviswidget-ctrls" role="menu">   <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus"></i></a>  <a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a></div>
+                        <h2>Détails Etablissement</h2>
+                        
+                        <span class="jarviswidget-loader" style="display: none;"><i class="fa fa-refresh fa-spin"></i></span>
+                    </header>
+
+                    <!-- widget div-->
+                    <div role="content" style="display: block;">
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+
+                            <div class="tabs-left">
+                                <ul class="nav nav-tabs tabs-left" id="demo-pill-nav">
+                                    <li class="active">
+                                        <a href="#tab-r1" data-toggle="tab" aria-expanded="true">Informations</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#tab-r2" data-toggle="tab" aria-expanded="false"><span class="badge bg-color-blueDark txt-color-white">3</span> Item 2</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#tab-r3" data-toggle="tab" aria-expanded="false"><span class="badge bg-color-greenLight txt-color-white">0</span> Item 3</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-r1">
+                                        <p>
+                                            informations
+                                        </p>
+                                    </div>
+                                    <div class="tab-pane" id="tab-r2">
+                                        <p>
+                                             data here item2
+                                        </p>
+                                    </div>
+                                    <div class="tab-pane" id="tab-r3">
+                                        <p>
+                                            data here item3
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+
+            </article>
+
+        </div>
+        <!-- end row -->
+    </section>
+    <!-- end widget grid -->
+</div>
+

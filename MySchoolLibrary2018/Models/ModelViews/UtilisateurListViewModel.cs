@@ -35,6 +35,8 @@ namespace MySchoolLibrary2018.Models.ModelViews
         public string Adresse { get; set; }
         public string Ville { get; set; }
         public string Pays { get; set; }
+        public string Photo { get; set; }
+
 
         public List<ApplicationRole> Roles { get; set; }
     }

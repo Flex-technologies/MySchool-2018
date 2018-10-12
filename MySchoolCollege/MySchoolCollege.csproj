@@ -124,6 +124,12 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -201,6 +207,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParametreController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -304,9 +311,75 @@
     <Compile Include="Migrations\201804241455126_MiseAjourDb18.Designer.cs">
       <DependentUpon>201804241455126_MiseAjourDb18.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807152023590_MiseAjourDb19.cs" />
+    <Compile Include="Migrations\201807152023590_MiseAjourDb19.Designer.cs">
+      <DependentUpon>201807152023590_MiseAjourDb19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807162247392_MiseAjourDb20.cs" />
+    <Compile Include="Migrations\201807162247392_MiseAjourDb20.Designer.cs">
+      <DependentUpon>201807162247392_MiseAjourDb20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807171600134_MiseAjourDb21.cs" />
+    <Compile Include="Migrations\201807171600134_MiseAjourDb21.Designer.cs">
+      <DependentUpon>201807171600134_MiseAjourDb21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807172006000_MiseAjourDb22.cs" />
+    <Compile Include="Migrations\201807172006000_MiseAjourDb22.Designer.cs">
+      <DependentUpon>201807172006000_MiseAjourDb22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807200923043_MiseAjourDb23.cs" />
+    <Compile Include="Migrations\201807200923043_MiseAjourDb23.Designer.cs">
+      <DependentUpon>201807200923043_MiseAjourDb23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201246449_MiseAjourDb24.cs" />
+    <Compile Include="Migrations\201807201246449_MiseAjourDb24.Designer.cs">
+      <DependentUpon>201807201246449_MiseAjourDb24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201250473_MiseAjourDb25.cs" />
+    <Compile Include="Migrations\201807201250473_MiseAjourDb25.Designer.cs">
+      <DependentUpon>201807201250473_MiseAjourDb25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201253269_MiseAjourDb26.cs" />
+    <Compile Include="Migrations\201807201253269_MiseAjourDb26.Designer.cs">
+      <DependentUpon>201807201253269_MiseAjourDb26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807301747265_MiseAjourDb27.cs" />
+    <Compile Include="Migrations\201807301747265_MiseAjourDb27.Designer.cs">
+      <DependentUpon>201807301747265_MiseAjourDb27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808011519389_MiseAjourDb28.cs" />
+    <Compile Include="Migrations\201808011519389_MiseAjourDb28.Designer.cs">
+      <DependentUpon>201808011519389_MiseAjourDb28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808061629394_MiseAjourDb29.cs" />
+    <Compile Include="Migrations\201808061629394_MiseAjourDb29.Designer.cs">
+      <DependentUpon>201808061629394_MiseAjourDb29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808061638506_MiseAjourDb30.cs" />
+    <Compile Include="Migrations\201808061638506_MiseAjourDb30.Designer.cs">
+      <DependentUpon>201808061638506_MiseAjourDb30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808061641215_MiseAjourDb31.cs" />
+    <Compile Include="Migrations\201808061641215_MiseAjourDb31.Designer.cs">
+      <DependentUpon>201808061641215_MiseAjourDb31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808071204181_MiseAjourDb32.cs" />
+    <Compile Include="Migrations\201808071204181_MiseAjourDb32.Designer.cs">
+      <DependentUpon>201808071204181_MiseAjourDb32.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809171143583_MiseAjourDb33.cs" />
+    <Compile Include="Migrations\201809171143583_MiseAjourDb33.Designer.cs">
+      <DependentUpon>201809171143583_MiseAjourDb33.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Content Include="Views\Shared\_Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Landing\Content\color\default.css" />
@@ -509,6 +582,7 @@
     <Content Include="Content\img\splash\touch-icon-ipad.png" />
     <Content Include="Content\img\splash\touch-icon-iphone-retina.png" />
     <Content Include="Content\img\vt-menu.png" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -1096,6 +1170,49 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Admin\ResetPassword.cshtml" />
+    <Content Include="Views\Admin\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Parametre\Etablissements.cshtml" />
+    <Content Include="Views\Parametre\DetailsEtablissement.cshtml" />
+    <Content Include="Views\Parametre\AjouterEtablissement.cshtml" />
+    <Content Include="Views\Parametre\ModifierEtablissement.cshtml" />
+    <Content Include="Views\Parametre\SupprimerEtablissement.cshtml" />
+    <Content Include="Views\Parametre\AnneeScolaires.cshtml" />
+    <Content Include="Views\Parametre\AjouterAnneeScolaire.cshtml" />
+    <Content Include="Views\Parametre\ModifierAnneeScolaire.cshtml" />
+    <Content Include="Views\Parametre\DetailsAnneeScolaire.cshtml" />
+    <Content Include="Views\Parametre\SupprimerAnneeScolaire.cshtml" />
+    <Content Include="Views\Parametre\Periodes.cshtml" />
+    <Content Include="Views\Parametre\AjouterPeriode.cshtml" />
+    <Content Include="Views\Parametre\ModifierPeriode.cshtml" />
+    <Content Include="Views\Parametre\SupprimerPeriode.cshtml" />
+    <Content Include="Views\Admin\FormModel.cshtml" />
+    <Content Include="Views\Admin\ListModel.cshtml" />
+    <Content Include="Views\Admin\DeleteModel.cshtml" />
+    <Content Include="Views\Parametre\Niveaux.cshtml" />
+    <Content Include="Views\Parametre\AjouterNiveau.cshtml" />
+    <Content Include="Views\Parametre\Cycles.cshtml" />
+    <Content Include="Views\Parametre\AjouterCycle.cshtml" />
+    <Content Include="Views\Parametre\ModifierCycle.cshtml" />
+    <Content Include="Views\Parametre\SupprimerCycle.cshtml" />
+    <Content Include="Views\Parametre\ModifierNiveau.cshtml" />
+    <Content Include="Views\Parametre\SupprimerNiveau.cshtml" />
+    <Content Include="Views\Parametre\Autorisations.cshtml" />
+    <Content Include="Views\Parametre\AjouterAutorisation.cshtml" />
+    <Content Include="Views\Parametre\ModifierAutorisation.cshtml" />
+    <Content Include="Views\Parametre\SupprimerAutorisation.cshtml" />
+    <Content Include="Views\Parametre\Filieres.cshtml" />
+    <Content Include="Views\Parametre\AjouterFiliere.cshtml" />
+    <Content Include="Views\Parametre\ModifierFiliere.cshtml" />
+    <Content Include="Views\Parametre\SupprimerFiliere.cshtml" />
+    <Content Include="Views\Parametre\Mentions.cshtml" />
+    <Content Include="Views\Parametre\AjouterMention.cshtml" />
+    <Content Include="Views\Parametre\ModifierMention.cshtml" />
+    <Content Include="Views\Parametre\SupprimerMention.cshtml" />
+    <Content Include="Views\Parametre\AvisCE.cshtml" />
+    <Content Include="Views\Parametre\AjouterAvisCE.cshtml" />
+    <Content Include="Views\Parametre\ModifierAvisCE.cshtml" />
+    <Content Include="Views\Parametre\SupprimerAvisCE.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml.saveoriginal" />
     <Content Include="Views\Home\About.cshtml" />
@@ -1139,7 +1256,7 @@
     <Content Include="Views\Shared\_TopRight.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\photo\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -1220,6 +1337,55 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804241455126_MiseAjourDb18.resx">
       <DependentUpon>201804241455126_MiseAjourDb18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807152023590_MiseAjourDb19.resx">
+      <DependentUpon>201807152023590_MiseAjourDb19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807162247392_MiseAjourDb20.resx">
+      <DependentUpon>201807162247392_MiseAjourDb20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807171600134_MiseAjourDb21.resx">
+      <DependentUpon>201807171600134_MiseAjourDb21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807172006000_MiseAjourDb22.resx">
+      <DependentUpon>201807172006000_MiseAjourDb22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807200923043_MiseAjourDb23.resx">
+      <DependentUpon>201807200923043_MiseAjourDb23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201246449_MiseAjourDb24.resx">
+      <DependentUpon>201807201246449_MiseAjourDb24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201250473_MiseAjourDb25.resx">
+      <DependentUpon>201807201250473_MiseAjourDb25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201253269_MiseAjourDb26.resx">
+      <DependentUpon>201807201253269_MiseAjourDb26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807301747265_MiseAjourDb27.resx">
+      <DependentUpon>201807301747265_MiseAjourDb27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011519389_MiseAjourDb28.resx">
+      <DependentUpon>201808011519389_MiseAjourDb28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808061629394_MiseAjourDb29.resx">
+      <DependentUpon>201808061629394_MiseAjourDb29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808061638506_MiseAjourDb30.resx">
+      <DependentUpon>201808061638506_MiseAjourDb30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808061641215_MiseAjourDb31.resx">
+      <DependentUpon>201808061641215_MiseAjourDb31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808071204181_MiseAjourDb32.resx">
+      <DependentUpon>201808071204181_MiseAjourDb32.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809171143583_MiseAjourDb33.resx">
+      <DependentUpon>201809171143583_MiseAjourDb33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
