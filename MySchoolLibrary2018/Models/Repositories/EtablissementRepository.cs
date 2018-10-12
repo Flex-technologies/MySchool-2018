@@ -19,7 +19,7 @@ namespace MySchoolLibrary2018.Models.Repositories
             var etablissements = Context.Etablissements.AsQueryable();
             if (includeRelatedEntity)
             {
-               etablissements = etablissements.Include(u => u.CreerPar).Include(u => u.Modifierpar).Include(t => t.Type);
+               //etablissements = etablissements.Include(u => u.CreerPar).Include(u => u.Modifierpar).Include(t => t.Type);
                 
             }
 

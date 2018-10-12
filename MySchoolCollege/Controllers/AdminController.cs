@@ -74,8 +74,7 @@ namespace MySchoolCollege.Controllers
                 model.Description = role.Description;
                 model.DateCreation = role.DateCreation;
                 model.DateModification = role.DateModification;
-                model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
-                model.Utilisateurs = UserManager.Users.Select(s => new SelectListItem { Value = s.Id, Text = s.Prenom + " " + s.Nom }).ToList();
+               
             }
             else
             {
@@ -94,6 +93,9 @@ namespace MySchoolCollege.Controllers
                     ViewBag.MessageClass = "success";
                 }
             }
+            model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
+            var userAEnlever = model.Users.Select(x => x.Id).ToArray();
+            model.Utilisateurs = UserManager.Users.Where(x => !userAEnlever.Contains(x.Id)).Select(s => new SelectListItem { Value = s.Id, Text = s.Prenom + " " + s.Nom }).ToList();
 
             return View(model);
         }
@@ -103,6 +105,7 @@ namespace MySchoolCollege.Controllers
         {
             ApplicationRole role = RoleManager.FindById(id);
             RoleViewModel model = new RoleViewModel();
+            
             if (role != null)
             {
                 model.Id = role.Id;
@@ -110,9 +113,7 @@ namespace MySchoolCollege.Controllers
                 model.DateCreation = role.DateCreation;
                 model.DateModification = role.DateModification;
                 model.RoleName = role.Name;
-                model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
-                model.Utilisateurs = UserManager.Users.Select(s => new SelectListItem { Text = s.Prenom + " " + s.Nom, Value = s.Id }).ToList();
-
+               
                 //Ajouter un utilisateur dans le groupe               
                 if (!string.IsNullOrEmpty(utilisateurId))
                 {
@@ -120,15 +121,19 @@ namespace MySchoolCollege.Controllers
                     if (roleResult.Succeeded)
                     {
                         model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
-                        ViewBag.MessageSucces = "Utilisateur ajouté avec succés";
-                        ViewBag.MessageClass = "success";
+                        TempData["Message"] = "Utilisateur ajouté avec succés";
+                        
                     }
                     else
                     {
-                        ViewBag.MessageSucces = "Utilisateur déja dans le groupe";
-                        ViewBag.MessageClass = "danger";
+                        TempData["MessageErreur"] = "Utilisateur déja dans le groupe";
+                        
                     }
                 }
+                model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
+                var userAEnlever = model.Users.Select(x => x.Id).ToArray();
+                model.Utilisateurs = UserManager.Users.Where(x => !userAEnlever.Contains(x.Id)).Select(s => new SelectListItem { Text = s.Prenom + " " + s.Nom, Value = s.Id }).ToList();
+
 
             }
 
@@ -161,6 +166,7 @@ namespace MySchoolCollege.Controllers
                     IdentityResult roleResult = RoleManager.Create(role);
                     if (roleResult.Succeeded)
                     {
+                        TempData["Message"] = "Role ajouté avec succès";
                         return RedirectToAction("Roles");
                     }
                 }
@@ -189,7 +195,7 @@ namespace MySchoolCollege.Controllers
             }
             else
             {
-                ViewBag.Message = "Aucun enregistrement trouvé";
+                return HttpNotFound();
 
             }
             return View(model);
@@ -210,6 +216,7 @@ namespace MySchoolCollege.Controllers
                     IdentityResult roleResult = RoleManager.Update(role);
                     if (roleResult.Succeeded)
                     {
+                        TempData["Message"] = "Role modifier avec succès";
                         return RedirectToAction("Roles");
                     }
                 }
@@ -229,11 +236,13 @@ namespace MySchoolCollege.Controllers
                 model.Id = role.Id;
                 model.RoleName = role.Name;
                 model.Description = role.Description;
+                model.Users = role.Users.Select(u => UserManager.FindById(u.UserId)).ToList();
+                
 
             }
             else
             {
-                ViewBag.Message = "Aucun enregistrement trouvé";
+                return HttpNotFound();
 
             }
             return View(model);
@@ -241,14 +250,29 @@ namespace MySchoolCollege.Controllers
 
 
         //POST: Supprimer un role
+        [HttpPost]
         public ActionResult SupprimerRole(RoleViewModel model)
         {
             if (model != null)
             {
                 ApplicationRole role = RoleManager.FindById(model.Id);
+                var compteur = role.Users.Count;
+                var message = "";
+                var UsersId = role.Users.Select(u => u.UserId);
+                while (role.Users.Count != 0)
+                {
+                    role.Users.Clear();
+                   
+                }
+                
+                if(compteur != 0)
+                {
+                    message = compteur + " utilisateurs retirés et ";
+                }
                 IdentityResult roleResult = RoleManager.Delete(role);
                 if (roleResult.Succeeded)
                 {
+                    TempData["Message"] = message + "le groupe (role) a été supprimé avec succès";
                     return RedirectToAction("Roles");
                 }
             }
@@ -376,7 +400,7 @@ namespace MySchoolCollege.Controllers
                         {
                           
                         }
-
+                        TempData["Message"] = "Utilisateur ajouté avec succès";
                         return RedirectToAction("Listeutilisateurs", "Admin");
                     }
 
@@ -538,6 +562,7 @@ namespace MySchoolCollege.Controllers
                 var saveChanges = Db.SaveChanges();
                 if (saveChanges >= 1)
                 {
+                    TempData["Message"] = "Utilisateur modifier avec succès";
                     return RedirectToAction("listeUtilisateurs");
                 }
 
@@ -601,7 +626,7 @@ namespace MySchoolCollege.Controllers
                 model.Ville = user.Ville;
                 model.Telephone = user.PhoneNumber;
                 model.CodePostal = user.CodePostal;
-
+                model.Roles = user.Roles.Select(r => RoleManager.FindById(r.RoleId)).ToList();
 
 
             }

@@ -47,14 +47,14 @@
                                     <a href="@Url.Action("Etablissements","Parametre")"><i class="fa fa-lg fa-fw fa-bank"></i> <span class="menu-item-parent">Etablissements</span></a>
 
                                 </li>
-                                <li class="@Html.RouteIf("professeur", "active")">
-                                    <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Années scolaires</span></a>
+                                <li class="@Html.RouteIf("Time", "active")">
+                                    <a href="#"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent">Années scolaires</span></a>
                                     <ul>
-                                        <li class="@Html.RouteIf("professeur", "active")">
-                                            <a href="#"> <span class="menu-item-parent">Calendrier</span></a>
+                                        <li class="@Html.RouteIf("AnneeScolaires", "active")">
+                                            <a href="@Url.Action("AnneeScolaires","Parametre")"> <span class="menu-item-parent">Années scolaire</span></a>
                                         </li>
-                                        <li class="@Html.RouteIf("professeur", "active")">
-                                            <a href="#"> <span class="menu-item-parent">Périodes personalisées</span></a>
+                                        <li class="@Html.RouteIf("Periodes", "active")">
+                                            <a href="@Url.Action("Periodes","Parametre")"> <span class="menu-item-parent">Périodes personalisées</span></a>
                                         </li>
 
                                     </ul>
@@ -62,24 +62,28 @@
                                 <li class="@Html.RouteIf("professeur", "active")">
                                     <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Généraux</span></a>
                                     <ul>
-                                        <li class="@Html.RouteIf("professeur", "active")">
-                                            <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Niveau</span></a>
+                                        <li class="@Html.RouteIf("Cycles", "active")">
+                                            <a href="@Url.Action("Cycles","Parametre")"><i class="fa fa-lg fa-fw fa-arrow-circle-up"></i> <span class="menu-item-parent">Cycles</span></a>
 
                                         </li>
-                                        <li class="@Html.RouteIf("professeur", "active")">
-                                            <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Autorisations</span></a>
+                                        <li class="@Html.RouteIf("Niveaux", "active")">
+                                            <a href="@Url.Action("Niveaux","Parametre")"><i class="fa fa-lg fa-fw fa-level-up"></i> <span class="menu-item-parent">Niveaux</span></a>
 
                                         </li>
-                                        <li class="@Html.RouteIf(" professeur", "active" )">
-                                            <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Filières</span></a>
+                                        <li class="@Html.RouteIf("Autorisations", "active")">
+                                            <a href="@Url.Action("Autorisations","Parametre")"><i class="fa fa-lg fa-fw fa-lock"></i> <span class="menu-item-parent">Autorisations</span></a>
 
                                         </li>
-                                        <li class="@Html.RouteIf("professeur", "active")">
-                                            <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Mentions</span></a>
+                                        <li class="@Html.RouteIf("Filieres", "active" )">
+                                            <a href="@Url.Action("Filieres","Parametre")"><i class="fa fa-lg fa-fw fa-list"></i> <span class="menu-item-parent">Filières</span></a>
 
                                         </li>
-                                        <li class="@Html.RouteIf("professeur", "active")">
-                                            <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Avis du CE</span></a>
+                                        <li class="@Html.RouteIf("Mentions", "active")">
+                                            <a href="@Url.Action("Mentions","Parametre")"><i class="fa fa-lg fa-fw fa-calendar-o"></i> <span class="menu-item-parent">Mentions</span></a>
+
+                                        </li>
+                                        <li class="@Html.RouteIf("AvisCE", "active")">
+                                            <a href="@Url.Action("AvisCE","Parametre")"><i class="fa fa-lg fa-fw fa-legal"></i> <span class="menu-item-parent">Avis du CE</span></a>
 
                                         </li>
                                     </ul>

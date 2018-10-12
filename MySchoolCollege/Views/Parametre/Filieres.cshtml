@@ -1,0 +1,149 @@
+﻿@model PagedList < MySchoolLibrary2018.Models.ModelViews.FiliereViewModel>
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Filieres";
+}
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-list-alt fa-list"></i>
+                Filières
+            </h1>
+        </div>
+    </div>
+    @Html.Partial("_Message")
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 ">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-0">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header role="heading">
+                        <span class="widget-icon"> <i class="fa fa-list"></i> </span>
+                        <h2><strong>Liste des</strong> <i>Filières</i></h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <input class="form-control" type="text">
+                            <span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            <div id="dt_basic_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                <div class="dt-toolbar">
+                                    <div class="col-xs-12 col-sm-6 hidden-xs">
+                                        <div id="dt_basic_filter" class="dataTables_filter">
+                                            <label>
+                                                <a href="@Url.Action("AjouterFiliere", "Parametre")" class="form-control btn-default b"> <i>Ajouter</i> </a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table id="dt_basic" class="table table-striped table-bordered table-hover dataTable no-footer" width="100%" role="grid" aria-describedby="dt_basic_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.First().Id)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.First().Description)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.First().TypeEtablissement)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.First().LivretScolaire)
+
+                                            </th>
+
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row">
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Id)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Description)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TypeEtablissement.Description)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.LivretScolaire)
+
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Modifier", "ModifierFiliere", new { id = item.Id }) |
+
+                                                    @Html.ActionLink("Supprimer", "SupprimerFiliere", new { id = item.Id })
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                                <div class="dt-toolbar-footer">
+                                    <div class="col-sm-6 col-xs-12 hidden-xs">
+                                        <div class="dataTables_info" id="dt_basic_info" role="status" aria-live="polite">
+                                            Total @Model.Count/@Model.TotalItemCount  items
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="dt_basic_paginate">
+                                            <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+                                            @Html.PagedListPager(Model, page => Url.Action("Filieres", new { page }))
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end widget content -->
+
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- WIDGET END -->
+        </div>
+        <!-- end row -->
+    </section>
+    <!-- end widget grid -->
+</div>
+

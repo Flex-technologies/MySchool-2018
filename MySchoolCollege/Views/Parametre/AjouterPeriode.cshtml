@@ -1,0 +1,215 @@
+﻿@model MySchoolLibrary2018.Models.ModelViews.PeriodeViewModel
+@{
+    ViewBag.Title = "Ajouter une Période";
+}
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-list-alt fa-calendar-o"></i>
+                Période personnalisée
+            </h1>
+        </div>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <!-- row -->
+        <div class="row">
+
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-0">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <h2><strong>Ajouter une </strong> <i>période personnalisée</i></h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <input class="form-control" type="text">
+                            <span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+
+                            @using (Html.BeginForm("AjouterPeriode", "Parametre", FormMethod.Post, new { @class = "smart-form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <header>Ajouter une période personnalisée</header>
+
+                                @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+                                <div class="padding-left-10">
+                                    <div class="padding-left-10">
+                                        @Html.ValidationSummary("", new { @class = "text-danger padding" })
+                                    </div>
+                                </div>
+                                <div class="alert-danger">
+                                    @ViewBag.MessageError
+                                </div>
+                                <fieldset>
+                                    <section>
+                                        <label class="input">
+                                            @Html.EditorFor(model => model.Periode, new { htmlAttributes = new { placeholder = "Période" } })
+                                            @Html.ValidationMessageFor(model => model.Periode, "", new { @class = "text-danger" })
+                                        </label>
+                                    </section>
+                                    <div class="row">
+                                        <section class="col col-6">
+
+                                            <label class="input">
+                                                <i class="icon-append fa fa-calendar"></i>
+                                                @Html.EditorFor(model => model.DateDebut, new { htmlAttributes = new { @class="datepicker", placeholder = "Date début" } })
+                                                @Html.ValidationMessageFor(model => model.DateDebut, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+
+                                            <label class="input">
+                                                <i class="icon-append fa fa-calendar"></i>
+                                                @Html.EditorFor(model => model.DateFin, new { htmlAttributes = new { @class="datepicker", placeholder = "Date fin" } })
+                                                @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <section>
+
+                                        <label class="select">
+                                            @Html.DropDownListFor(model => model.AnneeScolaireId, Model.AnneeScolaires, "Selectionnner une année")
+                                            <i></i>
+                                            @Html.ValidationMessageFor(model => model.AnneeScolaireId, "", new { @class = "text-danger" })
+                                        </label>
+                                    </section>
+
+
+                                </fieldset>
+                                <footer>
+
+                                    <button class="btn btn-primary" type="submit">
+                                        Ajouter
+                                    </button>
+                                    <button class="btn btn-default" formaction="Periodes">
+                                        Annuler
+                                    </button>
+
+                                </footer>
+
+                            }
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+
+            </article>
+            <!-- WIDGET END -->
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-question"></i> </span>
+                        <h2 class="font-md"><strong>Guide</strong> <i>d'utilisation</i></h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body smart-form no-padding">
+                            <header>Cette formulaire vous permez d'ajouter une période personnalisée</header>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+
+
+            </article>
+            <!-- WIDGET END -->
+
+
+        </div>
+
+        <!-- end row -->
+
+
+    </section>
+    <!-- end widget grid -->
+
+</div>
+
+@section pagespecific {
+    <script type="text/javascript">
+
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+        $(document).ready(function () {
+
+            $.datepicker.setDefaults($.datepicker.regional["fr"]);
+            $('.datepicker').datepicker({
+                dateFormat: 'dd/mm/yy'
+
+            });
+
+
+
+        })
+    </script>
+
+
+}
+
+

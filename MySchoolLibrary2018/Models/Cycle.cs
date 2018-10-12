@@ -9,5 +9,6 @@ namespace MySchoolLibrary2018.Models
     {
         public string Id { get; set; }
         public string Description { get; set; }
+        public virtual ICollection<Niveau> Niveaux { get; set; }
     }
 }

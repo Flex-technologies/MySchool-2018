@@ -16,6 +16,12 @@ namespace MySchoolLibrary2018.Models
 
         //Get(id)
         public abstract TEntity Get(int id, bool includeRelatedEntity = true);
+        public virtual TEntity Get(string id)
+        {
+            var set = Context.Set<TEntity>();
+            return set.Find(id);
+
+        }
         //GetList()
         public abstract IList<TEntity> GetList();
 
@@ -33,6 +39,13 @@ namespace MySchoolLibrary2018.Models
         }
         //Delete(id)
         public void Delete(int id)
+        {
+            var set = Context.Set<TEntity>();
+            var entity = set.Find(id);
+            set.Remove(entity);
+            Context.SaveChanges();
+        }
+        public void Delete(string id)
         {
             var set = Context.Set<TEntity>();
             var entity = set.Find(id);

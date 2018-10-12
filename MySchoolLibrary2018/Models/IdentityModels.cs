@@ -66,7 +66,7 @@ namespace MySchoolLibrary2018.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-
+            
         }
 
         public static ApplicationDbContext Create()
@@ -115,6 +115,8 @@ namespace MySchoolLibrary2018.Models
         public DbSet<Carnet> Carnets { get; set; }
         public DbSet<Cours> Cours { get; set; }
         public DbSet<PointageEtudiant> PointageEtudiants { get; set; }
+        public DbSet<Mention> Mentions { get; set; }
+       
         
     }
 }
