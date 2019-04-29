@@ -231,6 +231,14 @@
                                             @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
                                         </label>
                                     </section>
+                                    <section>
+
+                                        <label class="select">
+                                            @Html.DropDownListFor(model => model.EtablissementId, Model.Etablissements, "Sélectionner un établissement")
+                                            <i></i>
+                                            @Html.ValidationMessageFor(model => model.EtablissementId, "", new { @class = "text-danger" })
+                                        </label>
+                                    </section>
                                 </fieldset>
                                 <footer>
 

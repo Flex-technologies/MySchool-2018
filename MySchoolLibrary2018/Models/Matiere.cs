@@ -20,16 +20,16 @@ namespace MySchoolLibrary2018.Models
     public class ServiceMatiere
     {
         public int Id { get; set; }
-        public AnneeScolaire AnneeScolaire { get; set; }
-        public Matiere Matiere { get; set; }
+        public virtual AnneeScolaire AnneeScolaire { get; set; }
+        public virtual Matiere Matiere { get; set; }
         public int Coeficient { get; set; }
         public int? VolumeHoraire { get; set; }
-        public ApplicationUser Professeur { get; set; }
-        public Classe Classe { get; set; }
-        public UniteEnseignement UniteEnseignement { get; set; }
+        public virtual ApplicationUser Professeur { get; set; }
+        public virtual Classe Classe { get; set; }
+        public virtual UniteEnseignement UniteEnseignement { get; set; }
         public int Credit { get; set; }
-        public ApplicationUser CreerPar { get; set; }
-        public ApplicationUser Modifierpar { get; set; }
+        public virtual ApplicationUser CreerPar { get; set; }
+        public virtual ApplicationUser Modifierpar { get; set; }
         public DateTime CreeLe { get; set; }
         public DateTime ModifierLe { get; set; }
 

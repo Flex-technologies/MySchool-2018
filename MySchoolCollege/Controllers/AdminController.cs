@@ -170,9 +170,9 @@ namespace MySchoolCollege.Controllers
                         return RedirectToAction("Roles");
                     }
                 }
-                catch (Exception e)
+                catch 
                 {
-                    //ViewBag.MessageError = e.Message;
+                    
                     ViewBag.MessageError = "Une erreur est survenue. vérifier les données saisies";
                 }
 
@@ -314,6 +314,8 @@ namespace MySchoolCollege.Controllers
 
             model.ApplicationRoles = RoleManager.Roles.Select(s => new SelectListItem { Text = s.Description, Value = s.Id }).ToList();
             model.Fonctions = Db.Fonctions.Select(s => new SelectListItem { Text = s.Id, Value = s.Id }).ToList();
+            model.Etablissements = Db.Etablissements.Select(e => new SelectListItem { Text = e.Nom, Value = e.Id.ToString() }).ToList();
+
             //On cherche l'id du groupe avec description "parent"
             var RoleParent = RoleManager.FindByName("Parents");
             string roleId = "";
@@ -352,7 +354,8 @@ namespace MySchoolCollege.Controllers
                     Ville = model.Ville,
                     Pays = model.Pays,
                     PhoneNumber = model.Telephone,
-                    CodePostal = model.CodePostal
+                    CodePostal = model.CodePostal,
+                    Etablissement = model.Etablissement
 
                 };
 
@@ -371,6 +374,8 @@ namespace MySchoolCollege.Controllers
 
                 }
 
+                var etablissement = Db.Etablissements.Where(e => e.Id == model.EtablissementId).FirstOrDefault();
+                user.Etablissement = etablissement;
 
                 ApplicationRole role = await RoleManager.FindByIdAsync(model.ApplicationRoleId);
                 if (role != null)
@@ -423,6 +428,7 @@ namespace MySchoolCollege.Controllers
             // Si nous sommes arrivés là, un échec s’est produit. Réafficher le formulaire
             model.ApplicationRoles = RoleManager.Roles.Select(s => new SelectListItem { Text = s.Description, Value = s.Id }).ToList();
             model.Fonctions = Db.Fonctions.Select(s => new SelectListItem { Text = s.Id, Value = s.Id }).ToList();
+            model.Etablissements = Db.Etablissements.Select(e => new SelectListItem { Text = e.Nom, Value = e.Id.ToString() }).ToList();
             //On cherche l'id du groupe avec description "parent"
             var RoleParent = RoleManager.FindByName("Parents");
             string roleId = "";
@@ -456,6 +462,7 @@ namespace MySchoolCollege.Controllers
                 model.DateNaissance = user.DateNaissance;
                 model.Civillite = user.Civillite;
                 model.Adresse = user.Adresse;
+                model.Etablissement = user.Etablissement;
                 try
                 {
                     model.FonctionId = user.Fonction.Id;
@@ -499,6 +506,7 @@ namespace MySchoolCollege.Controllers
             }
             //Alimentation de la liste déroulante Parents
             model.Parents = UserManager.Users.Where(u => u.Roles.Any(r => r.RoleId == roleId)).Select(s => new SelectListItem { Text = s.Prenom + " " + s.Nom, Value = s.Id }).ToList();
+            model.Etablissements = Db.Etablissements.Select(e => new SelectListItem { Text = e.Nom, Value = e.Id.ToString() }).ToList();
 
             return View(model);
         }
@@ -556,6 +564,9 @@ namespace MySchoolCollege.Controllers
 
                 }
 
+                //etablissement
+                var etablissement = Db.Etablissements.Where(e => e.Id == model.EtablissementId).FirstOrDefault();
+                user.Etablissement = etablissement;
 
                 //result = await UserManager.UpdateAsync(user);
                 Db.Entry(user).State = EntityState.Modified;
@@ -580,6 +591,7 @@ namespace MySchoolCollege.Controllers
                 roleId = RoleParent.Id;
             }
             model.Parents = UserManager.Users.Where(u => u.Roles.Any(r => r.RoleId == roleId)).Select(s => new SelectListItem { Text = s.Prenom + " " + s.Nom, Value = s.Id }).ToList();
+            model.Etablissements = Db.Etablissements.Select(e => new SelectListItem { Text = e.Nom, Value = e.Id.ToString() }).ToList();
 
             return View(model);
         }

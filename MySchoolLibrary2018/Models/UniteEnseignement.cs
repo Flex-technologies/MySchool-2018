@@ -10,8 +10,8 @@ namespace MySchoolLibrary2018.Models
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public Classe Classe { get; set; }
+        public virtual Classe Classe { get; set; }
         public int Credit { get; set; }
-        public AnneeScolaire AnneeScolaire { get; set; }
+        public virtual AnneeScolaire AnneeScolaire { get; set; }
     }
 }

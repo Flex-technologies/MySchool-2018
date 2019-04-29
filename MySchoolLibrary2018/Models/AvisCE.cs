@@ -16,7 +16,7 @@ namespace MySchoolLibrary2018.Models
         public Boolean LivretBacPro { get; set; }
 
         /// <summary>
-        /// Génére le model à partir du viewModel
+        /// Génére le Viewmodel à partir du Model
         /// </summary>
         /// <returns></returns>
         public AvisCEViewModel ToModel()

@@ -71,6 +71,10 @@ namespace MySchoolLibrary2018.Models.ModelViews
         public string Telephone { get; set; }
         public string CodePostal { get; set; }
         public string Photo { get; set; }
+        [Required]
+        public int EtablissementId { get; set; }
+        public Etablissement Etablissement { get; set; }
+        public List<SelectListItem> Etablissements { get; set; }
         public List<ApplicationRole> Roles { get; set; }
     }
 
@@ -118,7 +122,10 @@ namespace MySchoolLibrary2018.Models.ModelViews
         public string Telephone { get; set; }
         public string CodePostal { get; set; }
         public string Photo { get; set; }
-
+        [Required]
+        public int EtablissementId { get; set; }
+        public Etablissement Etablissement { get; set; }
+        public List<SelectListItem> Etablissements { get; set; }
         public List<ApplicationRole> Roles { get; set; }
     }
 }
