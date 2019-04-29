@@ -17,10 +17,7 @@ namespace MySchoolLibrary2018.Models.Repositories
         public override AnneeScolaire Get(int id, bool includeRelatedEntity = true)
         {
             var anneeScolaire = Context.AnneeScolaires.AsQueryable();
-            if (includeRelatedEntity)
-            {
-                //anneeScolaire = anneeScolaire.Include(u => u.CreerPar).Include(u => u.Modifierpar);
-            }
+            
 
             return anneeScolaire.Where( a => a.Id == id).FirstOrDefault();
         }

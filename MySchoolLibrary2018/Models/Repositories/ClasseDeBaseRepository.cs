@@ -15,7 +15,8 @@ namespace MySchoolLibrary2018.Models.Repositories
 
         public override ClasseDeBase Get(int id, bool includeRelatedEntity = true)
         {
-            throw new NotImplementedException();
+            var classes = Context.ClasseDeBases.AsQueryable();
+            return classes.Where(c => c.Id == id).FirstOrDefault();
         }
 
         public override IList<ClasseDeBase> GetList()

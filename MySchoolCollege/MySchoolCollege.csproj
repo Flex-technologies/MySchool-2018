@@ -204,6 +204,7 @@
     <Compile Include="Areas\Landing\LandingAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -370,6 +371,46 @@
     <Compile Include="Migrations\201809171143583_MiseAjourDb33.cs" />
     <Compile Include="Migrations\201809171143583_MiseAjourDb33.Designer.cs">
       <DependentUpon>201809171143583_MiseAjourDb33.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811191554595_Ministere.cs" />
+    <Compile Include="Migrations\201811191554595_Ministere.Designer.cs">
+      <DependentUpon>201811191554595_Ministere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811191610325_typeinspection.cs" />
+    <Compile Include="Migrations\201811191610325_typeinspection.Designer.cs">
+      <DependentUpon>201811191610325_typeinspection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811191635218_inspection.cs" />
+    <Compile Include="Migrations\201811191635218_inspection.Designer.cs">
+      <DependentUpon>201811191635218_inspection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811191641559_updateEtablissement.cs" />
+    <Compile Include="Migrations\201811191641559_updateEtablissement.Designer.cs">
+      <DependentUpon>201811191641559_updateEtablissement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811191648261_updateInspection.cs" />
+    <Compile Include="Migrations\201811191648261_updateInspection.Designer.cs">
+      <DependentUpon>201811191648261_updateInspection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812042127591_updatetypeInspection.cs" />
+    <Compile Include="Migrations\201812042127591_updatetypeInspection.Designer.cs">
+      <DependentUpon>201812042127591_updatetypeInspection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903092234315_MiseAjourDatabase25.cs" />
+    <Compile Include="Migrations\201903092234315_MiseAjourDatabase25.Designer.cs">
+      <DependentUpon>201903092234315_MiseAjourDatabase25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903092324046_MiseAjourDatabase26.cs" />
+    <Compile Include="Migrations\201903092324046_MiseAjourDatabase26.Designer.cs">
+      <DependentUpon>201903092324046_MiseAjourDatabase26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903111436403_MiseAjourDatabase27.cs" />
+    <Compile Include="Migrations\201903111436403_MiseAjourDatabase27.Designer.cs">
+      <DependentUpon>201903111436403_MiseAjourDatabase27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903241810153_MiseAjourDatabase28.cs" />
+    <Compile Include="Migrations\201903241810153_MiseAjourDatabase28.Designer.cs">
+      <DependentUpon>201903241810153_MiseAjourDatabase28.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1213,6 +1254,33 @@
     <Content Include="Views\Parametre\AjouterAvisCE.cshtml" />
     <Content Include="Views\Parametre\ModifierAvisCE.cshtml" />
     <Content Include="Views\Parametre\SupprimerAvisCE.cshtml" />
+    <Content Include="Views\Parametre\MotifAbsences.cshtml" />
+    <Content Include="Views\Parametre\AjouterMotifAbsence.cshtml" />
+    <Content Include="Views\Parametre\ModifierMotifAbsence.cshtml" />
+    <Content Include="Views\Parametre\SupprimerMotifAbsence.cshtml" />
+    <Content Include="Views\Parametre\Ministeres.cshtml" />
+    <Content Include="Views\Parametre\AjouterMinistere.cshtml" />
+    <Content Include="Views\Parametre\ModifierMinistere.cshtml" />
+    <Content Include="Views\Parametre\SupprimerMinistere.cshtml" />
+    <Content Include="Views\Parametre\Inspections.cshtml" />
+    <Content Include="Views\Parametre\AjouterInspection.cshtml" />
+    <Content Include="Views\Parametre\ModifierInspection.cshtml" />
+    <Content Include="Views\Parametre\SupprimerInspection.cshtml" />
+    <Content Include="Views\Parametre\TypesEtablissement.cshtml" />
+    <Content Include="Views\Parametre\AjouterTypeEtablissement.cshtml" />
+    <Content Include="Views\Parametre\SupprimerTypeEtablissement.cshtml" />
+    <Content Include="Views\Parametre\TypesInspection.cshtml" />
+    <Content Include="Views\Parametre\AjouterTypeInspection.cshtml" />
+    <Content Include="Views\Parametre\SupprimerTypeInspection.cshtml" />
+    <Content Include="Views\Parametre\ClasseDeBases.cshtml" />
+    <Content Include="Views\Parametre\AjouterClasseDeBase.cshtml" />
+    <Content Include="Views\Parametre\ModifierClasseDeBase.cshtml" />
+    <Content Include="Views\Parametre\SupprimerClasseDeBase.cshtml" />
+    <Content Include="Views\Administration\AjouterClasse.cshtml" />
+    <Content Include="Views\Administration\Classes.cshtml" />
+    <Content Include="Views\Administration\ModifierClasse.cshtml" />
+    <Content Include="Views\Administration\SupprimerClasse.cshtml" />
+    <Content Include="Views\Administration\VueClasse.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml.saveoriginal" />
     <Content Include="Views\Home\About.cshtml" />
@@ -1382,6 +1450,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809171143583_MiseAjourDb33.resx">
       <DependentUpon>201809171143583_MiseAjourDb33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191554595_Ministere.resx">
+      <DependentUpon>201811191554595_Ministere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191610325_typeinspection.resx">
+      <DependentUpon>201811191610325_typeinspection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191635218_inspection.resx">
+      <DependentUpon>201811191635218_inspection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191641559_updateEtablissement.resx">
+      <DependentUpon>201811191641559_updateEtablissement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191648261_updateInspection.resx">
+      <DependentUpon>201811191648261_updateInspection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812042127591_updatetypeInspection.resx">
+      <DependentUpon>201812042127591_updatetypeInspection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903092234315_MiseAjourDatabase25.resx">
+      <DependentUpon>201903092234315_MiseAjourDatabase25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903092324046_MiseAjourDatabase26.resx">
+      <DependentUpon>201903092324046_MiseAjourDatabase26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903111436403_MiseAjourDatabase27.resx">
+      <DependentUpon>201903111436403_MiseAjourDatabase27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903241810153_MiseAjourDatabase28.resx">
+      <DependentUpon>201903241810153_MiseAjourDatabase28.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -58,6 +58,9 @@
                             @using (Html.BeginForm("ModifierEtablissement", "Parametre", FormMethod.Post, new { @class = "smart-form" }))
                             {
                                 @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.CreerParId)
+                                @Html.HiddenFor(model => model.DateCreation)
+                                
                                 <header>Modification</header>
 
                                 @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
@@ -73,6 +76,15 @@
                                             <label class="input">
                                                 @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { placeholder = "Nom de l'établissement" } })
                                                 @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+
+                                            <label class="select">
+
+                                                @Html.DropDownListFor(model => model.InspectionId, Model.Inspections, "Inspection de dépendance")
+                                                <i></i>
+                                                @Html.ValidationMessageFor(model => model.InspectionId, "", new { @class = "text-danger" })
                                             </label>
                                         </section>
                                     </div>

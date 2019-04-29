@@ -1,0 +1,180 @@
+﻿@model MySchoolLibrary2018.Models.ModelViews.ClasseViewModel
+@{
+    ViewBag.Title = "Ajouter une Classe";
+}
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa  fa-pencil"></i>
+                Classes
+            </h1>
+        </div>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-0">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <h2><strong>Ajouter une </strong> <i>Classe</i></h2>
+
+                    </header>
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <input class="form-control" type="text">
+                            <span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            @using (Html.BeginForm("AjouterClasse", "Administration", FormMethod.Post, new { @class = "smart-form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <header>Ajouter une classe</header>
+
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-6">
+                                            <label class="select">
+                                                @Html.DropDownListFor(model => model.AnneeScolaireId, Model.AnneeScolaires, "Année académique")
+                                                <i></i>
+                                                @Html.ValidationMessageFor(model => model.AnneeScolaireId, "", new { @class = "text-danger" })
+                                            </label>
+
+                                        </section>
+                                        <section class="col col-6">
+                                            <label class="input">
+                                                @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { placeholder = "Nom de la classe" }  })
+                                                <i></i>
+                                                @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+                                            </label>
+
+                                        </section>
+                                    </div>
+                                    <section>
+
+                                        <label class="select">
+                                            @Html.DropDownListFor(model => model.EtablissementId, Model.Etablissements)
+                                            <i></i>
+                                            @Html.ValidationMessageFor(model => model.EtablissementId, "", new { @class = "text-danger" })
+                                        </label>
+                                    </section>
+                                    <section>
+
+                                        <label class="select">
+                                            @Html.DropDownListFor(model => model.ProfesseurPrinciplaId, Model.Professeurs, "Professeur principal")
+                                            <i></i>
+                                            @Html.ValidationMessageFor(model => model.ProfesseurPrinciplaId, "", new { @class = "text-danger" })
+                                        </label>
+                                    </section>
+                                    <section>
+
+                                        <label class="select">
+                                            @Html.DropDownListFor(model => model.ClasseDeBaseId, Model.ClasseDeBases, "Sélectionner une classe")
+                                            <i></i>
+                                            @Html.ValidationMessageFor(model => model.ClasseDeBaseId, "", new { @class = "text-danger" })
+                                        </label>
+                                    </section>
+                                </fieldset>
+                                <footer>
+                                    <button class="btn btn-default" onclick="windows.history.back();">
+                                        Annuler
+                                    </button>
+                                    <button class="btn btn-primary" type="submit">
+                                        Ajouter
+                                    </button>
+                                </footer>
+
+                            }
+
+
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- WIDGET END -->
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-question"></i> </span>
+                        <h2 class="font-md"><strong>Guide</strong> <i>d'utilisation</i></h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body smart-form no-padding">
+                            <header>Cette formulaire vous permez d'ajouter une classe</header>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+
+
+            </article>
+            <!-- WIDGET END -->
+        </div>
+        <!--end row-->
+    </section>
+    <!--end widget grid-->
+</div>
+

@@ -1,4 +1,4 @@
-﻿@model PagedList<MySchoolLibrary2018.Models.ModelViews.ListeEtablissementViewModel>
+﻿@model PagedList<MySchoolLibrary2018.Models.ModelViews.EtablissementViewModel>
 @using PagedList.Mvc;
 @using PagedList;
 
@@ -82,7 +82,7 @@
                                                 @Html.DisplayNameFor(model => model.First().TelephoneSecretariat)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.First().Email)
+                                                @Html.DisplayNameFor(model => model.First().Type.Description)
 
                                             </th>
 
@@ -112,7 +112,7 @@
                                                     @Html.DisplayFor(modelItem => item.TelephoneSecretariat)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.Email)
+                                                    @Html.DisplayFor(modelItem => item.Type.Description)
 
                                                 </td>
 

@@ -44,7 +44,7 @@ namespace MySchoolLibrary2018.Models.Repositories
             return Context.TypeEtablissements.Find(id);
         }
 
-        public  TypeEtablissement Get(string id)
+        public override TypeEtablissement Get(string id)
         {
             return Context.TypeEtablissements.Find(id);
         }

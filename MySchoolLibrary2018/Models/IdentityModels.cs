@@ -22,6 +22,11 @@ namespace MySchoolLibrary2018.Models
             return userIdentity;
         }
 
+        public ApplicationUser()
+        {
+           // Classes = new HashSet<Classe>();
+        }
+
         //Personalisation de ApplicationUser
         public string Matricule { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Sélectionner une option")]
@@ -38,8 +43,10 @@ namespace MySchoolLibrary2018.Models
         public string Pays { get; set; }
         public string CodePostal { get; set; }
         public string Photo { get; set; }
+        public virtual Etablissement Etablissement { get; set; }
 
         //public  ICollection<ApplicationRole> GRoles { get; set; }
+        //public virtual ICollection<Classe> Classes { get; set; }
     }
 
    
@@ -116,7 +123,11 @@ namespace MySchoolLibrary2018.Models
         public DbSet<Cours> Cours { get; set; }
         public DbSet<PointageEtudiant> PointageEtudiants { get; set; }
         public DbSet<Mention> Mentions { get; set; }
-       
-        
+        public DbSet<Ministere> Ministeres { get; set; }
+        public DbSet<TypeInspection> TypeInspections { get; set; }
+        public DbSet<Inspection> inspections { get; set; }
+        public DbSet<Classe> Classes { get; set; }
+
+
     }
 }

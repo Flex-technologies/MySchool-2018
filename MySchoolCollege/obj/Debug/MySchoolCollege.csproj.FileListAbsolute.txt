@@ -179,3 +179,13 @@ C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolC
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb31.resources
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb32.resources
 C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDb33.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.Ministere.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.typeinspection.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.inspection.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.updateEtablissement.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.updateInspection.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.updatetypeInspection.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDatabase25.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDatabase26.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDatabase27.resources
+C:\Users\cfndi\Documents\MEGAsync\Projets\DotNet\MySchool\MySchool2018\MySchoolCollege\obj\Debug\MySchoolCollege.Migrations.MiseAjourDatabase28.resources

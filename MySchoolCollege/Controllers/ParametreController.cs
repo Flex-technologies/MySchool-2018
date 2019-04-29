@@ -10,6 +10,7 @@ using PagedList;
 using PagedList.Mvc;
 using MySchoolCollege.Properties;
 using MySchoolLibrary2018.Models;
+using System.Diagnostics;
 
 namespace MySchoolCollege.Controllers
 {
@@ -26,6 +27,14 @@ namespace MySchoolCollege.Controllers
         private readonly FiliereRepository _filiereRepository;
         private readonly MentionRepository _mentionRepository;
         private readonly AvisCERepository _avisCERepository;
+        private readonly MotifAbsenceRepository _motifAbsenceRepository;
+        private readonly MotifRetardRepository _motifRetardRepository;
+        private readonly MinistereRepository _ministereRepository;
+        private readonly InspectionRepository _inspectionRepository;
+        private readonly TypeInspectionRepository _typeInspectionRepository;
+        private readonly ClasseDeBaseRepository _classeDeBaseRepository;
+
+        private readonly int nLignesParPage = int.Parse(Resources.NombreLigneParPage);
 
         public ParametreController()
         {
@@ -39,12 +48,79 @@ namespace MySchoolCollege.Controllers
             _filiereRepository = new FiliereRepository(Db);
             _mentionRepository = new MentionRepository(Db);
             _avisCERepository = new AvisCERepository(Db);
+            _motifAbsenceRepository = new MotifAbsenceRepository(Db);
+            _motifRetardRepository = new MotifRetardRepository(Db);
+            _ministereRepository = new MinistereRepository(Db);
+            _inspectionRepository = new InspectionRepository(Db);
+            _typeInspectionRepository = new TypeInspectionRepository(Db);
+            _classeDeBaseRepository = new ClasseDeBaseRepository(Db);
         }
         // GET: Parametre
         public ActionResult Index()
         {
             return View();
         }
+
+        //Début type établissement
+        public ActionResult TypesEtablissement(int? page)
+        {
+            List<TypeEtablissementViewModel> model = _typeEtablissementRepository.GetList().Select(t => t.ToViewModel()).ToList();
+            var pageNumber = page ?? 1;
+            return View(model.ToPagedList(pageNumber, nLignesParPage));
+        }
+        public ActionResult AjouterTypeEtablissement()
+        {
+            TypeEtablissementViewModel model = new TypeEtablissementViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AjouterTypeEtablissement(TypeEtablissementViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var type = model.ToModel();
+                try
+                {
+                    _typeEtablissementRepository.Add(type);
+                    TempData["Message"] = "Type ajouté avec succès.";
+                }
+                catch
+                {
+                    TempData["MessageErreur"] = "Erreur inattendue!";
+                }
+
+                return RedirectToAction("TypesEtablissement");
+            }
+            return View(model);
+        }
+
+        public ActionResult SupprimerTypeEtablissement(string id)
+        {
+            var type = _typeEtablissementRepository.Get(id);
+            if(type == null)
+            {
+                return HttpNotFound();
+            }
+            return View(type.ToViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult SupprimerTypeEtablissementConfirmation(string id)
+        {
+            try
+            {
+                _typeEtablissementRepository.Delete(id);
+                TempData["Message"] = "Type supprimé avec succès";
+            }
+            catch
+            {
+                TempData["MessageErreur"] = "Erreur inattendue!";
+            }
+
+            return RedirectToAction("TypesEtablissement");
+        }
+        //Fin type établissement
 
         //Début Etablissement
         /// <summary>
@@ -60,25 +136,7 @@ namespace MySchoolCollege.Controllers
                 return HttpNotFound();
             }
 
-            var model = new EtablissementViewModel
-            {
-                Id = etablissement.Id,
-                Nom = etablissement.Nom,
-                Type = etablissement.Type,
-                Adresse = etablissement.Adresse,
-                Ville = etablissement.Ville,
-                Pays = etablissement.Pays,
-                TelephoneScolarite = etablissement.TelephoneScolarite,
-                TelephoneSecretariat = etablissement.TelephoneSecretariat,
-                Fax = etablissement.Fax,
-                Email = etablissement.Email,
-                SiteWeb = etablissement.SiteWeb,
-                DateCreation = etablissement.DateCreation,
-                DateModification = etablissement.DateModification,
-                CreerPar = etablissement.CreerPar,
-                Modifierpar = etablissement.Modifierpar
-
-            };
+            var model = etablissement.ToViewModel();
             return View(model);
         }
 
@@ -89,26 +147,9 @@ namespace MySchoolCollege.Controllers
         /// <returns></returns>
         public ActionResult Etablissements(int? page)
         {
-            List<ListeEtablissementViewModel> model = _etablissementRepository.GetList().Select(e => new ListeEtablissementViewModel {
-                Id = e.Id,
-                Nom = e.Nom,
-                Type = e.Type,
-                Email = e.Email,
-                SiteWeb = e.SiteWeb,
-                Adresse = e.Adresse,
-                TelephoneScolarite = e.TelephoneScolarite,
-                TelephoneSecretariat = e.TelephoneSecretariat,
-                Fax = e.Fax,
-                Ville = e.Ville,
-                Pays = e.Pays,
-                DateCreation = e.DateCreation,
-                DateModification = e.DateModification,
-                CreerPar = e.CreerPar,
-                Modifierpar = e.Modifierpar
-
-            }).ToList();
+            List<EtablissementViewModel> model = _etablissementRepository.GetList().Select(e => e.ToViewModel()).ToList();
             var pageNumber = page ?? 1;
-            var nLignesParPage = int.Parse(Resources.NombreLigneParPage);
+            //  
             return View(model.ToPagedList(pageNumber, nLignesParPage));
         }
 
@@ -118,7 +159,9 @@ namespace MySchoolCollege.Controllers
         {
             var model = new EtablissementViewModel();
             var types = _typeEtablissementRepository.GetList().Select(s => new SelectListItem { Text = s.Description, Value = s.Id }).ToList();
+            var inspections = _inspectionRepository.GetList().Select(s => new SelectListItem { Text = s.Nom, Value = s.Id.ToString()}).ToList();
             model.Types = types;
+            model.Inspections = inspections;
             return View(model);
         }
 
@@ -132,31 +175,35 @@ namespace MySchoolCollege.Controllers
         {
             if (ModelState.IsValid)
             {
-                Etablissement etablissement = new Etablissement();
-                etablissement.Email = model.Email;
-                etablissement.Adresse = model.Adresse;
-                etablissement.Ville = model.Ville;
-                etablissement.Pays = model.Pays;
+                Etablissement etablissement = model.ToModel();
+                
                 etablissement.CreerPar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
                 etablissement.Modifierpar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
-                etablissement.Nom = model.Nom;
-                etablissement.SiteWeb = model.SiteWeb;
-                etablissement.TelephoneScolarite = model.TelephoneScolarite;
-                etablissement.TelephoneSecretariat = model.TelephoneSecretariat;
-                etablissement.Fax = model.Fax;
+               
                 etablissement.Type = _typeEtablissementRepository.Get(model.TypeEtablissementId);
+                etablissement.Inspection = _inspectionRepository.Get(model.InspectionId);
                 etablissement.DateCreation = DateTime.Now;
                 etablissement.DateModification = DateTime.Now;
 
-                _etablissementRepository.Add(etablissement);
-                TempData["Message"] = "Etablissement ajouté avec succés";
+                try
+                {
+                    _etablissementRepository.Add(etablissement);
+                    TempData["Message"] = "Etablissement ajouté avec succés";
+                    
+                }
+                catch
+                {
+                    TempData["MessageErreur"] = "Erreur inattendue!";
+                }
+
                 return RedirectToAction("Etablissements");
-                
 
             }
             //si on arrive ici c'est à dire quelque chose ne va pas.
             var types = _typeEtablissementRepository.GetList().Select(s => new SelectListItem { Text = s.Description, Value = s.Id }).ToList();
+            var inspections = _inspectionRepository.GetList().Select(s => new SelectListItem { Text = s.Nom, Value = s.Id.ToString() }).ToList();
             model.Types = types;
+            model.Inspections = inspections;
             return View(model);
         }
 
@@ -170,31 +217,16 @@ namespace MySchoolCollege.Controllers
                 return HttpNotFound();
             }
             var types = _typeEtablissementRepository.GetList().Select(s => new SelectListItem { Text = s.Description, Value = s.Id }).ToList();
-           
-            var model = new EtablissementViewModel
-            {
-                Id = etablissement.Id,
-                Nom = etablissement.Nom,
-                Type = etablissement.Type,
-                Adresse = etablissement.Adresse,
-                Ville =  etablissement.Ville,
-                Pays = etablissement.Pays,
-                TelephoneScolarite = etablissement.TelephoneScolarite,
-                TelephoneSecretariat = etablissement.TelephoneSecretariat,
-                Fax = etablissement.Fax,
-                Email = etablissement.Email,
-                SiteWeb = etablissement.SiteWeb,
-                DateCreation = etablissement.DateCreation,
-                DateModification = etablissement.DateModification,
-                CreerPar = etablissement.CreerPar,
-                Modifierpar = etablissement.Modifierpar,
-                Types = types,
-               
+            var inspections = _inspectionRepository.GetList().Select(i => new SelectListItem { Text = i.Nom, Value = i.Id.ToString()}).ToList();
+            
 
-            };
+            var model = etablissement.ToViewModel();
+            model.Types = types;
+            model.Inspections = inspections;
             try
             {
                 model.TypeEtablissementId = etablissement.Type.Id;
+                model.InspectionId = etablissement.Inspection.Id;
             }
             catch
             {
@@ -209,30 +241,35 @@ namespace MySchoolCollege.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                Etablissement etablissement = _etablissementRepository.Get(model.Id,true) ;
                 
-                etablissement.Email = model.Email;
-                etablissement.Adresse = model.Adresse;
-                etablissement.Ville = model.Ville;
-                etablissement.Pays = model.Pays;
-                
+                Etablissement etablissement = _etablissementRepository.Get(model.Id);
+                model.ToSaveModel(etablissement);
                 etablissement.Modifierpar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
-                etablissement.Nom = model.Nom;
-                etablissement.SiteWeb = model.SiteWeb;
-                etablissement.TelephoneScolarite = model.TelephoneScolarite;
-                etablissement.TelephoneSecretariat = model.TelephoneSecretariat;
-                etablissement.Fax = model.Fax;
+                etablissement.CreerPar = Db.Users.Where(u => u.Id == model.CreerParId).First();
                 etablissement.Type = _typeEtablissementRepository.Get(model.TypeEtablissementId);
-                
+                etablissement.Inspection = _inspectionRepository.Get(model.InspectionId);
                 etablissement.DateModification = DateTime.Now;
-
-                _etablissementRepository.Update(etablissement);
-                TempData["Message"] = "Etablissement modifié avec succés";
+                //Db.Database.Log = s => Debug.WriteLine(s);
+                try
+                {
+                    
+                    _etablissementRepository.Update(etablissement);
+                    TempData["Message"] = "Etablissement modifié avec succés";
+                    
+                }
+                catch
+                {
+                    TempData["MessageErreur"] = "Erreur inattendue!";
+                }
+                
 
                 return RedirectToAction("Etablissements");
             }
             //si on arrive ici c'est à dire quelque chose ne va pas.
+            var types = _typeEtablissementRepository.GetList().Select(s => new SelectListItem { Text = s.Description, Value = s.Id }).ToList();
+            var inspections = _inspectionRepository.GetList().Select(i => new SelectListItem { Text = i.Nom, Value = i.Id.ToString() }).ToList();
+            model.Types = types;
+            model.Inspections = inspections;
             return View(model);
         }
 
@@ -329,8 +366,8 @@ namespace MySchoolCollege.Controllers
 
             }).ToList();
             var pageNumber = page ?? 1;
-            var nLigneParPage = int.Parse(Resources.NombreLigneParPage);
-            return View(model.ToPagedList(pageNumber, nLigneParPage));
+              
+            return View(model.ToPagedList(pageNumber, nLignesParPage));
         }
 
         [HttpGet]
@@ -478,8 +515,8 @@ namespace MySchoolCollege.Controllers
 
             }).ToList();
             var pageNumber = page ?? 1;
-            var nLigneParPage = int.Parse(Resources.NombreLigneParPage);
-            return View(model.ToPagedList(pageNumber, nLigneParPage));
+              
+            return View(model.ToPagedList(pageNumber, nLignesParPage));
         }
 
         [HttpGet]
@@ -654,8 +691,8 @@ namespace MySchoolCollege.Controllers
 
             }).ToList();
             var pageNumber = page ?? 1;
-            var nLigneParPage = int.Parse(Resources.NombreLigneParPage);
-            return View(model.ToPagedList(pageNumber, nLigneParPage));
+              
+            return View(model.ToPagedList(pageNumber, nLignesParPage));
         }
         [HttpGet]
         public ActionResult AjouterNiveau()
@@ -785,8 +822,8 @@ namespace MySchoolCollege.Controllers
 
             }).ToList();
             var pageNumber = page ?? 1;
-            var nLigneParPage = int.Parse(Resources.NombreLigneParPage);
-            return View(model.ToPagedList(pageNumber, nLigneParPage));
+              
+            return View(model.ToPagedList(pageNumber, nLignesParPage));
         }
         [HttpGet]
         public ActionResult AjouterCycle()
@@ -904,8 +941,8 @@ namespace MySchoolCollege.Controllers
 
             }).ToList();
             var pageNumber = page ?? 1;
-            var nligneParPage = int.Parse(Resources.NombreLigneParPage);
-            return View(model.ToPagedList(pageNumber, nligneParPage));
+              
+            return View(model.ToPagedList(pageNumber, nLignesParPage));
         }
         [HttpGet]
         public ActionResult AjouterAutorisation()
@@ -1030,8 +1067,8 @@ namespace MySchoolCollege.Controllers
 
             }).ToList();
             var pageNumber = page ?? 1;
-            var nLigneParPage = int.Parse(Resources.NombreLigneParPage);
-            return View(model.ToPagedList(pageNumber,nLigneParPage));
+              
+            return View(model.ToPagedList(pageNumber,nLignesParPage));
         }
         public ActionResult AjouterFiliere()
         {
@@ -1148,8 +1185,8 @@ namespace MySchoolCollege.Controllers
                 AImprimer = m.AImprimer
             }).ToList();
             var pageNumber = page ?? 1;
-            var nLigneParPage = int.Parse(Resources.NombreLigneParPage);
-            return View(model.ToPagedList(pageNumber, nLigneParPage));
+              
+            return View(model.ToPagedList(pageNumber, nLignesParPage));
         }
         public ActionResult AjouterMention()
         {
@@ -1261,8 +1298,8 @@ namespace MySchoolCollege.Controllers
 
             }).ToList();
             var pageNumber = page ?? 1;
-            var nLigneParPage = int.Parse(Resources.NombreLigneParPage);
-            return View(model.ToPagedList(pageNumber,nLigneParPage));
+              
+            return View(model.ToPagedList(pageNumber,nLignesParPage));
            
         }
         public ActionResult AjouterAvisCE()
@@ -1354,5 +1391,567 @@ namespace MySchoolCollege.Controllers
             return RedirectToAction("AvisCE");
         }
         //Fin Avis
+        //Début MotifAbsence
+        /// <summary>
+        /// Retourne la liste des motifs d'absence sous forme de pagination
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public ActionResult MotifAbsences(int? page)
+        {
+            List<MotifAbsenceViewModel> model = _motifAbsenceRepository.GetList().Select(m => m.ToModel()).ToList();
+            var pageNumber = page ?? 1;
+            
+            return View(model.ToPagedList(pageNumber, nLignesParPage));
+        }
+        public ActionResult AjouterMotifAbsence()
+        {
+            MotifAbsenceViewModel model = new MotifAbsenceViewModel();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AjouterMotifAbsence(MotifAbsenceViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var motif = model.ToModel();
+                try
+                {
+                    _motifAbsenceRepository.Add(motif);
+                    TempData["message"] = "Motif d'absence ajouté avec succès.";
+                    return RedirectToAction("MotifAbsences");
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+
+                }
+            }
+            //Si on arrive ici ça veut dire qu'il ya un probleme
+            return View(model);
+        }
+
+        public ActionResult ModifierMotifAbsence(string id)
+        {
+            var motif = _motifAbsenceRepository.Get(id);
+            if(motif == null)
+            {
+                return HttpNotFound();
+            }
+            var model = motif.ToModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ModifierMotifAbsence(MotifAbsenceViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var motif = model.ToModel();
+                
+                //Reattacher le model au context
+                _motifAbsenceRepository.Context.Entry(motif).State = EntityState.Modified;
+
+                try
+                {
+                    _motifAbsenceRepository.Update(motif);
+                    TempData["message"] = "Motif d'absence modifié avec succès.";
+                    return RedirectToAction("MotifAbsences");
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            //si on arrive ici ça veut dire que quelque chose ne va pas
+            return View(model);
+        }
+        
+        public ActionResult SupprimerMotifAbsence(string id)
+        {
+            var motif = _motifAbsenceRepository.Get(id);
+
+            if(motif == null) {
+
+                return HttpNotFound();
+            }
+            var model = motif.ToModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SupprimerMotifAbsenceConfirmation(string id)
+        {
+            try
+            {
+                _motifAbsenceRepository.Delete(id);
+                TempData["message"] = "Motif Absence supprimé avec succès.";
+            }
+            catch
+            {
+                TempData["MessageErreur"] = "Erreur inattendue!";
+            }
+
+            return RedirectToAction("MotifAbsences");
+        }
+        //Fin MotifAbsence
+        
+        //Début Ministere
+        public ActionResult Ministeres(int? page)
+        {
+            List<MinistereViewModel> model = _ministereRepository.GetList().Select(m => m.ToViewModel()).ToList();
+            var pageNumber = page ?? 1;
+            return View(model.ToPagedList(pageNumber,nLignesParPage));
+        }
+
+        public ActionResult AjouterMinistere()
+        {
+            MinistereViewModel model = new MinistereViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AjouterMinistere(MinistereViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Ministere ministere = model.ToModel();
+                ministere.CreerLe = DateTime.Now;
+                ministere.ModifierLe = DateTime.Now;
+                ministere.CreerPar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
+                ministere.ModifierPar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
+
+                try
+                {
+                    _ministereRepository.Add(ministere);
+                    TempData["message"] = "Organisme créé avec succès.";
+                }
+                catch
+                {
+                    TempData["MessageErreur"] = "Erreur inattendue!";
+                }
+
+                return RedirectToAction("Ministeres");
+            }
+
+            //Si on arrive ici ça veut dire que quelque ne va pas.
+            return View(model);
+        }
+        
+        public ActionResult ModifierMinistere(int id)
+        {
+            var ministere = _ministereRepository.Get(id);
+            if(ministere == null)
+            {
+                return HttpNotFound();
+            }
+            var model = ministere.ToViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ModifierMinistere(MinistereViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var ministere = model.ToModel();
+
+                ministere.ModifierLe = DateTime.Now;
+                ministere.ModifierPar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
+                ministere.CreerPar = Db.Users.Where(u => u.Id == model.CreerParId).First();
+
+                //Rattache le model au context courant
+                _ministereRepository.Context.Entry(ministere).State = EntityState.Modified;
+
+                try
+                {
+                    _ministereRepository.Update(ministere);
+                    TempData["message"] = "Organisme modifié avec succès.";
+                }
+                catch
+                {
+                    TempData["MessageErreur"] = "Erreur inattendue!";
+                }
+
+                return RedirectToAction("Ministeres");
+
+            }
+
+            //Si on arrive ici ça veut dire que quelque chose ne va pas.
+            return View(model);
+        }
+
+        public ActionResult SupprimerMinistere(int id)
+        {
+            var ministere = _ministereRepository.Get(id);
+            if(ministere == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = ministere.ToViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SupprimerMinistereConfirmation(int id)
+        {
+            try
+            {
+                _ministereRepository.Delete(id);
+                TempData["message"] = "Organisme supprimé avec succès!";
+            }
+            catch
+            {
+                TempData["MessageErreur"] = "Erreur inattendue!";
+            }
+            return RedirectToAction("Ministeres");
+        }
+        //Fin Ministere
+
+        //Début inspection
+        public ActionResult TypesInspection(int? page)
+        {
+            List<TypeInspectionViewModel> model = _typeInspectionRepository.GetList().Select(t => t.ToViewModel()).ToList();
+            var pageNumber = page ?? 1;
+            return View(model.ToPagedList(pageNumber,nLignesParPage));
+        }
+
+        public ActionResult AjouterTypeInspection()
+        {
+            TypeInspectionViewModel model = new TypeInspectionViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AjouterTypeInspection(TypeInspectionViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var typeInspection = model.ToModel();
+                try
+                {
+                    _typeInspectionRepository.Add(typeInspection);
+                    TempData["Message"] = "Type (" + typeInspection.Id + ") ajouté avec succès.";
+                }
+                catch
+                {
+                    TempData["MessageErreur"] = "Erreur inattendue!";
+                }
+
+                return RedirectToAction("TypesInspection");
+            }
+            return View(model);
+        }
+
+        public ActionResult SupprimerTypeInspection(int id)
+        {
+            var typeInspection = _typeInspectionRepository.Get(id);
+            TypeInspectionViewModel model = typeInspection.ToViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SupprimerTypeInspectionConfirmation(int id)
+        {
+            try
+            {
+                _typeInspectionRepository.Delete(id);
+                TempData["Message"] = "Type (" + id + ") supprimé avec succès.";
+            }
+            catch
+            {
+                TempData["MessageErreur"] = "Erreur inattendue!";
+            }
+
+            return RedirectToAction("TypesInspection");
+        }
+
+        public ActionResult Inspections(int? page)
+        {
+            List<InspectionViewModel> model = _inspectionRepository.GetList().Select(i => i.ToViewModel()).ToList();
+            var pageNumber = page ?? 1;
+            return View(model.ToPagedList(pageNumber,nLignesParPage));
+        }
+
+        public ActionResult AjouterInspection()
+        {
+            InspectionViewModel model = new InspectionViewModel();
+            model.MinisteresSelect = _ministereRepository.GetList().Select(m => new SelectListItem { Text = m.Nom, Value = m.Id.ToString()}).ToList();
+            model.InspectionsSelect = _inspectionRepository.GetList().Select( i => new SelectListItem { Text = i.Nom, Value = i.Id.ToString()}).ToList();
+            model.TypeInspectionsSelect = _typeInspectionRepository.GetList().Select(t => new SelectListItem { Text = t.Description, Value = t.Id.ToString()}).ToList();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AjouterInspection(InspectionViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.CreerPar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
+                model.ModifierPar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
+                model.CreerLe = DateTime.Now;
+                model.ModifierLe = DateTime.Now;
+
+                if(model.InspectionParentId == null)
+                {
+                    model.InspectionParent = null;
+                }
+                else
+                {
+                    model.InspectionParent = _inspectionRepository.Get(int.Parse(model.InspectionParentId.ToString()));
+                }
+                
+                model.Ministere = _ministereRepository.Get(model.MinistereId);
+                model.TypeInspection = _typeInspectionRepository.Get(model.TypeInspectionId);
+                var inspection = model.ToModel();
+                try
+                {
+                    _inspectionRepository.Add(inspection);
+                    TempData["message"] = "Inspection ajoutée avec succès.";
+                }
+                catch
+                {
+                    TempData["MessageErreur"] = "Erreur inattendue!";
+                }
+
+                return RedirectToAction("Inspections");
+            }
+
+            //Si on arrive ici ça veut dire que quelque chose ne va pas.
+            model.MinisteresSelect = _ministereRepository.GetList().Select(m => new SelectListItem { Text = m.Nom, Value = m.Id.ToString() }).ToList();
+            model.InspectionsSelect = _inspectionRepository.GetList().Select(i => new SelectListItem { Text = i.Nom, Value = i.Id.ToString() }).ToList();
+            model.TypeInspectionsSelect = _typeInspectionRepository.GetList().Select(t => new SelectListItem { Text = t.Description, Value = t.Id.ToString() }).ToList();
+
+            return View(model);
+        }
+
+        public ActionResult ModifierInspection(int id)
+        {
+            var inspection = _inspectionRepository.Get(id);
+            if(inspection == null)
+            {
+                return HttpNotFound();
+            }
+            var model = inspection.ToViewModel();
+            model.TypeInspectionId = inspection.TypeInspection.Id;
+
+            if (inspection.InspectionParent == null)
+            {
+                model.InspectionParentId = null;
+            }
+            else
+            {
+                model.InspectionParentId = inspection.InspectionParent.Id;
+            }
+            
+            model.MinistereId = inspection.Ministere.Id;
+            model.CreerParId = inspection.CreerPar.Id;
+            model.MinisteresSelect = _ministereRepository.GetList().Select(m => new SelectListItem { Text = m.Nom, Value = m.Id.ToString() }).ToList();
+            model.InspectionsSelect = _inspectionRepository.GetList().Select(i => new SelectListItem { Text = i.Nom, Value = i.Id.ToString() }).ToList();
+            model.TypeInspectionsSelect = _typeInspectionRepository.GetList().Select(t => new SelectListItem { Text = t.Description, Value = t.Id.ToString() }).ToList();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ModifierInspection(InspectionViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.CreerPar = Db.Users.Where(u => u.Id == model.CreerParId).First();
+                model.ModifierPar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
+                model.ModifierLe = DateTime.Now;
+                if (model.InspectionParentId == null)
+                {
+                    model.InspectionParent = null;
+                }
+                else
+                {
+                    model.InspectionParent = _inspectionRepository.Get(int.Parse(model.InspectionParentId.ToString()));
+                }
+               
+                model.Ministere = _ministereRepository.Get(model.MinistereId);
+                model.TypeInspection = _typeInspectionRepository.Get(model.TypeInspectionId);
+                //var inspection = model.ToModel();
+                var inspection = _inspectionRepository.Get(model.Id);
+                model.ToSaveModel(inspection);
+                try
+                {
+                    
+                    _inspectionRepository.Update(inspection);
+                    TempData["Message"] = "Inspection modifiée avec succès.";
+                }
+                catch
+                {
+                    
+                    TempData["MessageErreur"] = "Erreur inattendue!";
+                }
+
+                return RedirectToAction("Inspections");
+            }
+
+            //Si on arrive ici ça veut que quelque chose ne va pas.
+            model.MinisteresSelect = _ministereRepository.GetList().Select(m => new SelectListItem { Text = m.Nom, Value = m.Id.ToString() }).ToList();
+            model.InspectionsSelect = _inspectionRepository.GetList().Select(i => new SelectListItem { Text = i.Nom, Value = i.Id.ToString() }).ToList();
+            model.TypeInspectionsSelect = _typeInspectionRepository.GetList().Select(t => new SelectListItem { Text = t.Description, Value = t.Id.ToString() }).ToList();
+
+            return View(model);
+        }
+
+        public ActionResult SupprimerInspection(int id)
+        {
+            var inspection = _inspectionRepository.Get(id);
+            if(inspection == null)
+            {
+                return HttpNotFound();
+            }
+            var model = inspection.ToViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SupprimerInspectionConfirmation(int id)
+        {
+            try
+            {
+                _inspectionRepository.Delete(id);
+                TempData["message"] = "Inspection supprimée avec succès.";
+            }
+            catch
+            {
+                TempData["MessageErreur"] = "Erreur inattendue!";
+            }
+
+            return RedirectToAction("Inspections");
+        }
+        //Fin inspection
+
+        //Début ClasseDeBase
+        public ActionResult ClasseDeBases(int? page)
+        {
+            List<ClasseDeBaseViewModel> model = _classeDeBaseRepository.GetList().Select(c => c.ToViewModel()).ToList();
+            var pageNumber = page ?? 1;
+            return View(model.ToPagedList(pageNumber,nLignesParPage));
+        }
+
+        public ActionResult AjouterClasseDeBase()
+        {
+            ClasseDeBaseViewModel model = new ClasseDeBaseViewModel();
+            model.Niveaux = _niveauRepository.GetList().Select(n => new SelectListItem { Value = n.Id, Text = n.Description }).ToList();
+            model.Filieres = _filiereRepository.GetList().Select(f => new SelectListItem { Value = f.Id, Text = f.Description }).ToList();
+            
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AjouterClasseDeBase(ClasseDeBaseViewModel model)
+        {
+            model.CreerPar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
+            model.ModifierPar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
+            model.CreerLe = DateTime.Now;
+            model.ModifierLe = DateTime.Now;
+            model.Niveau = _niveauRepository.Get(model.NiveauId);
+            model.Filiere = _filiereRepository.Get(model.FiliereId);
+           
+
+            if (ModelState.IsValid)
+            {
+                var classe = new ClasseDeBase();
+                classe = model.ToModel();
+                try
+                {
+                    _classeDeBaseRepository.Add(classe);
+                    TempData["Message"] = "Clase de base ajoutée avec succès!";
+                    return RedirectToAction("ClasseDeBases");
+                }
+                catch
+                {
+                    TempData["MessageErreur"] = "Erreur inattendue";
+                }
+            }
+
+            //si on arrive ici ça veut dire qu'il y a un problème!
+            model.Niveaux = _niveauRepository.GetList().Select(n => new SelectListItem { Value = n.Id, Text = n.Description }).ToList();
+            model.Filieres = _filiereRepository.GetList().Select(f => new SelectListItem { Value = f.Id, Text = f.Description }).ToList();
+            return View(model);
+        }
+
+        public ActionResult ModifierClasseDeBase(int Id)
+        {
+            var classe = _classeDeBaseRepository.Get(Id);
+            if(classe == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new ClasseDeBaseViewModel();
+            model = classe.ToViewModel();
+            model.Niveaux = _niveauRepository.GetList().Select(n => new SelectListItem { Value = n.Id, Text = n.Description }).ToList();
+            model.Filieres = _filiereRepository.GetList().Select(f => new SelectListItem { Value = f.Id, Text = f.Description }).ToList();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ModifierClasseDeBase(ClasseDeBaseViewModel model)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                model.ModifierPar = Db.Users.Where(u => u.UserName == User.Identity.Name).First();
+                model.ModifierLe = DateTime.Now;
+                model.Niveau = _niveauRepository.Get(model.NiveauId);
+                model.Filiere = _filiereRepository.Get(model.FiliereId);
+
+                var classe = _classeDeBaseRepository.Get(model.Id);
+                model.ToSaveModel(classe);
+                try
+                {
+                    _classeDeBaseRepository.Update(classe);
+                    TempData["Message"] = "Clase de base modifiée avec succès!";
+                    return RedirectToAction("ClasseDeBases");
+                }
+                catch
+                {
+                    TempData["MessageErreur"] = "Erreur inattendue";
+                }
+            }
+
+            //si on arrive ici ça veut dire qu'il y a un problème!
+            model.Niveaux = _niveauRepository.GetList().Select(n => new SelectListItem { Value = n.Id, Text = n.Description }).ToList();
+            model.Filieres = _filiereRepository.GetList().Select(f => new SelectListItem { Value = f.Id, Text = f.Description }).ToList();
+            return View(model);
+        }
+
+        public ActionResult SupprimerClasseDeBase(int id)
+        {
+            var classe = _classeDeBaseRepository.Get(id);
+            if(classe == null)
+            {
+                return HttpNotFound();
+            }
+            var model = new ClasseDeBaseViewModel();
+            model = classe.ToViewModel();
+            
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SupprimerClasseDeBaseConfirmation(int id)
+        {
+            try
+            {
+                _classeDeBaseRepository.Delete(id);
+                TempData["Message"] = "Classe de base supprimée avec succès!";
+            }
+            catch
+            {
+                TempData["MessageErreur"] = "Erreur inattendue!";
+            }
+            return RedirectToAction("ClasseDeBases");
+        }
+        //Fin ClasseDeBase
+
     }
 }

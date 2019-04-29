@@ -10,6 +10,7 @@ namespace MySchoolLibrary2018.Models
         public AnneeScolaire()
         {
             Periodes = new List<PeriodePersonnalisee>();
+            Classes = new HashSet<Classe>();
         }
         public int Id { get; set; }
         public string AnneeAcademique { get; set; }
@@ -21,6 +22,8 @@ namespace MySchoolLibrary2018.Models
         public virtual ApplicationUser Modifierpar { get; set; }
 
         public virtual ICollection<PeriodePersonnalisee> Periodes { get; set; }
+        public virtual ICollection<Classe> Classes { get; set; }
+
     }
 
     

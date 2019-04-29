@@ -9,17 +9,17 @@ namespace MySchoolLibrary2018.Models
     public class Cours
     {
         public int Id { get; set; }
-        public AnneeScolaire AnneeScolaire { get; set; }
+        public virtual AnneeScolaire AnneeScolaire { get; set; }
         public DateTime DateCours { get; set; }
         public DateTime HeureDebut { get; set; }
         public DateTime HeureFin { get; set; }
-        public Salle Salle { get; set; }
-        public Classe Classe { get; set; }
-        public ServiceMatiere Matiere { get; set; }
-        public ApplicationUser Professeur { get; set; }
+        public virtual Salle Salle { get; set; }
+        public virtual Classe Classe { get; set; }
+        public virtual ServiceMatiere Matiere { get; set; }
+        public virtual ApplicationUser Professeur { get; set; }
         public string Commentaires { get; set; }
-        public ApplicationUser CreerPar { get; set; }
-        public ApplicationUser ModifierPar { get; set; }
+        public virtual ApplicationUser CreerPar { get; set; }
+        public virtual ApplicationUser ModifierPar { get; set; }
         public DateTime CreerLe { get; set; }
         public DateTime ModifierLe { get; set; }
     }
