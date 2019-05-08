@@ -4,6 +4,11 @@
 
 /.vs/MySchool2018/v16/Server/sqlite3/db.lock
 /.vs/config/applicationhost.config
+/.vs/MySchool2018/v16/Server/sqlite3/storage.ide
+/.vs/MySchool2018/v16/Server/sqlite3/storage.ide-shm
+/.vs/MySchool2018/v16/Server/sqlite3/storage.ide-wal
+/MySchoolCollege/obj/Debug/MySchoolCollege.csprojAssemblyReference.cache
+/MySchoolLibrary2018/obj/Debug/MySchoolLibrary2018.csprojAssemblyReference.cache
 # ignore a file type
 *.ide
 *.cache
